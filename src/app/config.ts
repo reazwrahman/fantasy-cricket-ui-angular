@@ -6,10 +6,12 @@ type ApiConfig = {
 
 const apiConfig:ApiConfig = {
     local: {
-      fantasyRanking: 'http://0.0.0.0:5001/fantasyContest/displayContestRanking?match_id={matchId}'
+        fantasyRanking: 'http://0.0.0.0:5001/fantasyContest/displayContestRanking?match_id={matchId}', 
+        pointsSummary: 'http://0.0.0.0:5001/fantasyContest/displayFullSquadSummary?match_id={matchId}&user_id={userId}&user_name={userName}'
     },
     remote: {
-      fantasyRanking: 'https://pe1nvrpbz4.execute-api.us-east-1.amazonaws.com/dev/fantasyContest/displayContestRanking?match_id={matchId}'
+        fantasyRanking: 'https://pe1nvrpbz4.execute-api.us-east-1.amazonaws.com/dev/fantasyContest/displayContestRanking?match_id={matchId}', 
+        pointsSummary: 'https://pe1nvrpbz4.execute-api.us-east-1.amazonaws.com/dev/fantasyContest/displayFullSquadSummary?match_id={matchId}&user_id={userId}&user_name={userName}'
     }
   }; 
 

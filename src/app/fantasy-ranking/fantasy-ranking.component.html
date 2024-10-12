@@ -1,1 +1,36 @@
-<p>fantasy-ranking works!</p>
+<div class="ranking-container">
+    <table>
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Name</th>
+                <th>Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="rank-1" *ngIf="rankingData!.rankings[0]">
+                <td>{{ rankingData!.rankings[0].rank }} {{ rankingData!.rankings[0].medal }}</td>
+                <td>{{ rankingData!.rankings[0].name }}</td>
+                <td>{{ rankingData!.rankings[0].score }}</td>
+            </tr>
+            <tr class="rank-2" *ngIf="rankingData!.rankings[1]">
+                <td>{{ rankingData!.rankings[1].rank }} {{ rankingData!.rankings[1].medal }}</td>
+                <td>{{ rankingData!.rankings[1].name }}</td>
+                <td>{{ rankingData!.rankings[1].score }}</td>
+            </tr>
+            <tr class="rank-3" *ngIf="rankingData!.rankings[2]">
+                <td>{{ rankingData!.rankings[2].rank }} {{ rankingData!.rankings[2].medal }}</td>
+                <td>{{ rankingData!.rankings[2].name }}</td>
+                <td>{{ rankingData!.rankings[2].score }}</td>
+            </tr>
+            <tr *ngFor="let ranking of rankingData!.rankings.slice(3)">
+                <td>{{ ranking.rank }} {{ ranking.medal }}</td>
+                <td>{{ ranking.name }}</td>
+                <td>{{ ranking.score }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="last-updated">
+        {{ rankingData!.lastUpdated }}
+    </div>
+</div>

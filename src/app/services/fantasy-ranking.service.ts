@@ -15,5 +15,10 @@ export class FantasyRankingService {
   getFantasyRanking(matchId: string): Observable<any> {
     const apiUrl = getApiUrl('fantasyRanking', { matchId });  // Replace {matchId} in the URL
     return this.http.get(apiUrl);
+  } 
+
+  getPointsSummary(matchId: string, userId:string, userName:string): Observable<any> {
+    const apiUrl = getApiUrl('pointsSummary', { matchId, userId, userName });  // Replace {matchId} in the URL
+    return this.http.get(apiUrl);
   }
 }
