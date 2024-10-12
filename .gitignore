@@ -1,5 +1,8 @@
 # See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
 
+#ignore node_modules, run npm install locally 
+node_modules/
+
 # Compiled output
 /dist
 /tmp
