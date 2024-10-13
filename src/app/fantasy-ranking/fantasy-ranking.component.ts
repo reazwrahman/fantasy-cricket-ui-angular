@@ -5,15 +5,17 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { FantasyRankingService } from '../services/fantasy-ranking.service';
 
-const ACTIVE_GAMES = "active_games";
+export const ACTIVE_GAMES = "active_games";
+export const SELECTED_GAME = "selected_game";
+export const SELECTED_USER = "selected_user";
 
-interface Game {
+export interface Game {
   id: string;
   title: string;
   image: string;
 }
 
-interface Ranking {
+export interface Ranking {
   id: string;
   medal?: string;
   name: string;
@@ -38,20 +40,22 @@ export class FantasyRankingComponent {
 
   selectedGame: Game | null = null;
   activeGames: Game[] | null = null;
-  rankingData: RankingData | null = null;
+  rankingData: RankingData | null = null; 
+  selectedUser: Ranking | null = null;
 
-  constructor(private fantasyRankingService: FantasyRankingService) { }
+  constructor(private fantasyRankingService: FantasyRankingService,
+    private router: Router) { }
 
   ngOnInit() {
     this.fetchActiveGames();
   }
 
   fetchRankingData(gameId: string): void {
-      this.fantasyRankingService.getFantasyRanking(gameId).subscribe(response => {
-        if (response) {
-          this.rankingData = response;
-        }
-      });
+    this.fantasyRankingService.getFantasyRanking(gameId).subscribe(response => {
+      if (response) {
+        this.rankingData = response;
+      }
+    });
   }
 
   fetchActiveGames(): void {
@@ -71,10 +75,18 @@ export class FantasyRankingComponent {
   selectGame(game: Game) {
     this.selectedGame = game;
     this.fetchRankingData(this.selectedGame.id);
-  } 
+  }
 
-  viewDetails(row:Ranking){ 
-    console.log (row.name);
+  viewDetails(row: Ranking) {
+    if (row) { 
+      this.selectedUser = row; 
+      delete this.selectedUser.medal;
+      sessionStorage.setItem(SELECTED_GAME, JSON.stringify(this.selectedGame));
+      sessionStorage.setItem(SELECTED_USER, JSON.stringify(this.selectedUser));
+
+      console.log(JSON.stringify(row));
+      this.router.navigate([`/fantasy-ranking/points-summary`]);
+    }
   }
 
 }

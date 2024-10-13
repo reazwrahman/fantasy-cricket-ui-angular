@@ -38,19 +38,19 @@
                     <td>{{ rankingData!.rankings[1].rank }} {{ rankingData!.rankings[1].medal }}</td>
                     <td>{{ rankingData!.rankings[1].name }}</td>
                     <td>{{ rankingData!.rankings[1].score }}</td> 
-                    <td><button class="select-button" (click)="viewDetails(rankingData!.rankings[0])">  Details</button></td>
+                    <td><button class="select-button" (click)="viewDetails(rankingData!.rankings[1])">  Details</button></td>
                 </tr>
                 <tr class="rank-3" *ngIf="rankingData!.rankings[2]">
                     <td>{{ rankingData!.rankings[2].rank }} {{ rankingData!.rankings[2].medal }}</td>
                     <td>{{ rankingData!.rankings[2].name }}</td>
                     <td>{{ rankingData!.rankings[2].score }}</td> 
-                    <td><button class="select-button" (click)="viewDetails(rankingData!.rankings[0])">  Details</button></td>
+                    <td><button class="select-button" (click)="viewDetails(rankingData!.rankings[2])">  Details</button></td>
                 </tr>
                 <tr *ngFor="let ranking of rankingData!.rankings.slice(3)">
                     <td>{{ ranking.rank }} {{ ranking.medal }}</td>
                     <td>{{ ranking.name }}</td>
                     <td>{{ ranking.score }}</td> 
-                    <td><button class="select-button" (click)="viewDetails(rankingData!.rankings[0])">  Details</button></td>
+                    <td><button class="select-button" (click)="viewDetails(ranking)">  Details</button></td>
                 </tr>
             </tbody>
         </table>
