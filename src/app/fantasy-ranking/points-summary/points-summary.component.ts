@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { FantasyRankingService } from '../../services/fantasy-ranking.service';
 import { Game, Ranking, SELECTED_GAME, SELECTED_USER } from '../fantasy-ranking.component';
-
+import { NavbarComponent } from './navbar/navbar.component';
 
 export interface PointsSummary {
   game_title: string;
@@ -26,10 +26,10 @@ export type PlayerRow = [
   number   // Total points (can be a float)
 ];
 
-@Component({
+@Component({ 
   selector: 'app-points-summary',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, NavbarComponent],
   templateUrl: './points-summary.component.html',
   styleUrl: './points-summary.component.css'
 })
@@ -38,7 +38,8 @@ export class PointsSummaryComponent {
   game: Game | null = null;
   user: Ranking | null = null; 
   userIcon:string = 'src/assets/user_icon.jpg'; 
-  pointsSummary:PointsSummary | null = null; 
+  pointsSummary:PointsSummary | null = null;
+  selectedTab: string = 'summary'; 
 
   constructor(private fantasyRankingService: FantasyRankingService,
     private router: Router) { }
@@ -57,6 +58,12 @@ export class PointsSummaryComponent {
   getUserInfo() {
     this.user = sessionStorage.getItem(SELECTED_USER) ? JSON.parse(sessionStorage[SELECTED_USER]!) : null;
   } 
+
+  onTabSelected(tab: string) {
+    this.selectedTab = tab; // Update the selected tab 
+    console.log(this.selectedTab);
+    // You can also perform any additional actions here if needed
+  }
 
   getPointsSummary(){ 
     this.fantasyRankingService.getPointsSummary(this.game!.id, this.user!.id, this.user!.name).subscribe(response => {
