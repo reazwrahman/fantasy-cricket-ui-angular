@@ -5,7 +5,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { FantasyRankingService } from '../../services/fantasy-ranking.service';
 import { Game, Ranking, SELECTED_GAME, SELECTED_USER } from '../fantasy-ranking.component';
-import { NavbarComponent } from './navbar/navbar.component';
+import { NavbarComponent, SUMMARY_TAB } from './navbar/navbar.component'; 
+import { PointsDetailsComponent } from './points-details/points-details.component';
+
 
 export interface PointsSummary {
   game_title: string;
@@ -29,7 +31,7 @@ export type PlayerRow = [
 @Component({ 
   selector: 'app-points-summary',
   standalone: true,
-  imports: [CommonModule, NavbarComponent],
+  imports: [CommonModule, NavbarComponent, PointsDetailsComponent],
   templateUrl: './points-summary.component.html',
   styleUrl: './points-summary.component.css'
 })
@@ -39,7 +41,7 @@ export class PointsSummaryComponent {
   user: Ranking | null = null; 
   userIcon:string = 'src/assets/user_icon.jpg'; 
   pointsSummary:PointsSummary | null = null;
-  selectedTab: string = 'summary'; 
+  selectedTab: string = SUMMARY_TAB; 
 
   constructor(private fantasyRankingService: FantasyRankingService,
     private router: Router) { }
@@ -61,7 +63,10 @@ export class PointsSummaryComponent {
 
   onTabSelected(tab: string) {
     this.selectedTab = tab; // Update the selected tab 
-    console.log(this.selectedTab);
+    if(this.selectedTab == SUMMARY_TAB){ 
+      this.getPointsSummary();
+    } 
+    //console.log(this.selectedTab);
   }
 
   getPointsSummary(){ 

@@ -36,20 +36,31 @@
     <app-navbar (tabSelected)="onTabSelected($event)"></app-navbar>
 
     <!-- to display points summary -->
-    <div class="game-container">      
-        <table class="fantasy-table">
-          <thead>
-            <tr>
-              <th *ngFor="let heading of pointsSummary?.headings">{{ heading }}</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let row of pointsSummary?.rows">
-              <td *ngFor="let cell of row">{{ cell }}</td>
-            </tr>
-          </tbody>
-        </table> 
+    <div class="game-container">   
 
+        <!-- display summary by default -->
+        <ng-container *ngIf="selectedTab === 'summary'; else otherContent">   
+            <table class="fantasy-table">
+            <thead>
+                <tr>
+                <th *ngFor="let heading of pointsSummary?.headings">{{ heading }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let row of pointsSummary?.rows">
+                <td *ngFor="let cell of row">{{ cell }}</td>
+                </tr>
+            </tbody>
+            </table>  
+        </ng-container>
+
+        <!-- Use 'ng-template' for alternate content -->
+        <ng-template #otherContent>
+            <app-points-details [tab]="selectedTab"></app-points-details>
+            <h2> Placeholder Content</h2>
+        </ng-template>
+
+        <!-- display the content below regardless of tab selection -->
         <h2><strong>Prediction:</strong> {{ pointsSummary?.match_prediction }}</h2>
         <p><strong>Prediction Bonus:</strong> {{ pointsSummary?.prediction_bonus }}</p>
         <p><strong>Total Points:</strong> {{ pointsSummary?.total_points }}</p>

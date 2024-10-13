@@ -1,5 +1,11 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 
+
+export const SUMMARY_TAB = "summary"; 
+export const BATTING_TAB = "batting"; 
+export const BOWLING_TAB = "bowling"; 
+export const FIELDING_TAB = "fielding";
+
 @Component({
     selector: 'app-navbar', 
     standalone: true,
