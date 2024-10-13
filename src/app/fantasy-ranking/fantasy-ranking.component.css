@@ -157,11 +157,13 @@ th {
 tbody tr {
     background-color: #292929; /* Dark row background */
     transition: background-color 0.3s;
+    font-size: 1.4em; /* Increase row font size */
+    font-weight: 500; /* Slightly bold for better visibility */
 }
 
 tbody tr:hover {
     background-color: #4DAF7C; /* Green on hover */
-    color: #fff; /* Change text color on hover */
+    color: #fff; /* Change text color on hover */ 
 }
 
 td {

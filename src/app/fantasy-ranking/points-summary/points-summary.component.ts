@@ -62,14 +62,12 @@ export class PointsSummaryComponent {
   onTabSelected(tab: string) {
     this.selectedTab = tab; // Update the selected tab 
     console.log(this.selectedTab);
-    // You can also perform any additional actions here if needed
   }
 
   getPointsSummary(){ 
     this.fantasyRankingService.getPointsSummary(this.game!.id, this.user!.id, this.user!.name).subscribe(response => {
       if (response) {
-        this.pointsSummary = response; 
-        console.log(JSON.stringify(this.pointsSummary));
+        this.pointsSummary = response;
       }
     }); 
   } 
