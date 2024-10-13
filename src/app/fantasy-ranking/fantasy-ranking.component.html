@@ -1,36 +1,61 @@
-<div class="ranking-container">
-    <table>
-        <thead>
-            <tr>
-                <th>Rank</th>
-                <th>Name</th>
-                <th>Score</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="rank-1" *ngIf="rankingData!.rankings[0]">
-                <td>{{ rankingData!.rankings[0].rank }} {{ rankingData!.rankings[0].medal }}</td>
-                <td>{{ rankingData!.rankings[0].name }}</td>
-                <td>{{ rankingData!.rankings[0].score }}</td>
-            </tr>
-            <tr class="rank-2" *ngIf="rankingData!.rankings[1]">
-                <td>{{ rankingData!.rankings[1].rank }} {{ rankingData!.rankings[1].medal }}</td>
-                <td>{{ rankingData!.rankings[1].name }}</td>
-                <td>{{ rankingData!.rankings[1].score }}</td>
-            </tr>
-            <tr class="rank-3" *ngIf="rankingData!.rankings[2]">
-                <td>{{ rankingData!.rankings[2].rank }} {{ rankingData!.rankings[2].medal }}</td>
-                <td>{{ rankingData!.rankings[2].name }}</td>
-                <td>{{ rankingData!.rankings[2].score }}</td>
-            </tr>
-            <tr *ngFor="let ranking of rankingData!.rankings.slice(3)">
-                <td>{{ ranking.rank }} {{ ranking.medal }}</td>
-                <td>{{ ranking.name }}</td>
-                <td>{{ ranking.score }}</td>
-            </tr>
-        </tbody>
-    </table>
-    <div class="last-updated">
-        {{ rankingData!.lastUpdated }}
+<div class="main-container">
+    <br>
+    <h1 class="page-title"> Leaderboard </h1>
+    <div class="carousel-container">
+        <div class="carousel">
+            <div class="carousel-item" *ngFor="let game of activeGames">
+            <img 
+                [src]= "game.image"
+                [alt] ="game.title"  
+                /> 
+                <div class="carousel-info">
+                    <h3>{{ game.title }}</h3>
+                    <button class="select-button"(click)="selectGame(game)"> Select</button>
+                </div>
+            </div>
+        </div> 
+    </div>
+
+    <div class="ranking-container" *ngIf="rankingData"> 
+        <h2 class="table-title">{{this.selectedGame?.title}}</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Name</th>
+                    <th>Score</th> 
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="rank-1" *ngIf="rankingData!.rankings[0]">
+                    <td>{{ rankingData!.rankings[0].rank }} {{ rankingData!.rankings[0].medal }}</td>
+                    <td>{{ rankingData!.rankings[0].name }}</td>
+                    <td>{{ rankingData!.rankings[0].score }} </td>
+                    <td><button class="select-button" (click)="viewDetails(rankingData!.rankings[0])">  Details</button></td> 
+                </tr>
+                <tr class="rank-2" *ngIf="rankingData!.rankings[1]">
+                    <td>{{ rankingData!.rankings[1].rank }} {{ rankingData!.rankings[1].medal }}</td>
+                    <td>{{ rankingData!.rankings[1].name }}</td>
+                    <td>{{ rankingData!.rankings[1].score }}</td> 
+                    <td><button class="select-button" (click)="viewDetails(rankingData!.rankings[0])">  Details</button></td>
+                </tr>
+                <tr class="rank-3" *ngIf="rankingData!.rankings[2]">
+                    <td>{{ rankingData!.rankings[2].rank }} {{ rankingData!.rankings[2].medal }}</td>
+                    <td>{{ rankingData!.rankings[2].name }}</td>
+                    <td>{{ rankingData!.rankings[2].score }}</td> 
+                    <td><button class="select-button" (click)="viewDetails(rankingData!.rankings[0])">  Details</button></td>
+                </tr>
+                <tr *ngFor="let ranking of rankingData!.rankings.slice(3)">
+                    <td>{{ ranking.rank }} {{ ranking.medal }}</td>
+                    <td>{{ ranking.name }}</td>
+                    <td>{{ ranking.score }}</td> 
+                    <td><button class="select-button" (click)="viewDetails(rankingData!.rankings[0])">  Details</button></td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="last-updated">
+            {{ rankingData!.last_updated }}
+        </div>
     </div>
 </div>

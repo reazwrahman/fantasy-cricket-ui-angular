@@ -1,3 +1,120 @@
+.main-container {
+    /*max-width: 1000px; /* Adjust as needed */ 
+    width: 100%; 
+    height: auto;
+    margin: 0 auto; /* Centering the container */
+    /*padding: 10px; /* Add padding around the main content */
+    background-color: #131a24;/* Background color to unify the look */
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Soft shadow */
+}
+
+.page-title { 
+    text-align: center; /* Center the title */ 
+    width: 100%;
+    color: #ffffff; /* White color for contrast */
+    margin-bottom: 20px; /* Space between title and carousel */
+    font-size: 36px; /* Larger font size for prominence */
+    font-family: 'Arial Black', sans-serif; /* Bold font family */
+    text-transform: uppercase; /* Uppercase letters for emphasis */
+    letter-spacing: 2px; /* Space between letters for a more dynamic look */
+    background: linear-gradient(135deg, #e2f7ef, #e2f6f1); /* Match your theme with a gradient */
+    -webkit-background-clip: text; /* Clip the background to the text */
+    -webkit-text-fill-color: transparent; /* Fill the text with the gradient */
+    text-shadow: 2px 2px 4px rgba(137, 177, 255, 0.7), 0 0 10px rgba(255, 255, 255, 0.3); /* Soft shadow for depth */
+    padding: 10px; /* Padding around the text */
+    border-radius: 8px; /* Rounded corners */
+    display: inline-block; /* Make the title an inline-block for padding */
+}
+
+
+/* ----------------show active games------------------- */
+/* Carousel container to center it properly */
+.carousel-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Full width */
+    overflow: hidden; /* Hide any overflow */
+    padding: 10px; /* Padding around the container */
+    box-sizing: border-box; /* Include padding in the layout */
+}
+
+/* Carousel styles */
+.carousel {
+    display: flex;
+    gap: 15px; /* Space between items */
+    overflow-x: auto; /* Allow horizontal scrolling */
+    padding: 10px; /* Inner padding */
+    scroll-snap-type: x mandatory; /* Enable snap scrolling */
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
+}
+
+
+
+/* Prevent the first item from being cut off */
+.carousel-item {
+    flex: 0 0 auto; /* Ensure items don’t shrink */
+    max-width: 150px;
+    max-height: 250px;
+    background: linear-gradient(135deg, #202734, #293b5b);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Add shadow */
+    scroll-snap-align: start; /* Align items correctly on scroll */ 
+    text-align: center; /* Center text alignment */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    color: #ffffff; /* Default white text */
+    font-family: 'Arial', sans-serif; /* Clean, modern font */
+}
+
+.carousel-item img {
+    width: 100%; /* Make the image fill the width of the tile */
+    height: auto; /* Maintain the aspect ratio of the image */
+    border-radius: 8px; /* Slight rounding for image corners */
+    object-fit: cover; /* Cover the entire area while maintaining aspect ratio */
+}
+
+.carousel-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(135deg, #3a6073, #1d4350);
+}
+
+
+/* Cool button styles */
+.select-button {
+    background: linear-gradient(135deg, #4e9479, #008c6c); /* Neon gradient */
+    border: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    box-shadow: 0px 4px 8px rgba(0, 255, 156, 0.4); /* Neon glow */
+}
+
+/* Button hover and active effects */
+.select-button:hover {
+    background: linear-gradient(135deg, #00cc80, #007a5a);
+    transform: scale(1.1); /* Slight zoom on hover */
+    box-shadow: 0px 6px 12px rgba(0, 255, 156, 0.6); /* More glow */
+}
+
+.select-button:active {
+    transform: scale(0.95); /* Slight press effect */
+    box-shadow: 0px 2px 6px rgba(0, 255, 156, 0.3);
+}
+/* Make carousel responsive */
+@media (max-width: 768px) {
+    .carousel {
+        padding: 0 10px; 
+    }
+}
+/* ---------------------------------------------------- */
+
 .ranking-container {
     margin: 20px auto;
     padding: 20px;
@@ -7,6 +124,13 @@
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Soft shadow */
     color: #ffffff; /* White text for better contrast */
     font-family: 'Arial', sans-serif; /* Modern font */
+}
+.table-title {
+    text-align: center; /* Center the title */
+    margin-bottom: 10px; /* Space between the title and table */
+    color: #62d59a; /* Match title color with your theme */
+    font-family: 'Arial', sans-serif; /* Ensure consistent font */
+    font-size: 1.5em; /* Adjust size as needed */
 }
 
 table {

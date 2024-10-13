@@ -5,6 +5,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { FantasyRankingService } from '../services/fantasy-ranking.service';
 
+const ACTIVE_GAMES = "active_games";
+
+interface Game {
+  id: string;
+  title: string;
+  image: string;
+}
+
 interface Ranking {
   id: string;
   medal?: string;
@@ -14,7 +22,7 @@ interface Ranking {
 }
 
 interface RankingData {
-  lastUpdated: string;
+  last_updated: string;
   rankings: Ranking[];
 }
 
@@ -28,28 +36,45 @@ interface RankingData {
 })
 export class FantasyRankingComponent {
 
+  selectedGame: Game | null = null;
+  activeGames: Game[] | null = null;
   rankingData: RankingData | null = null;
 
-  constructor(private fantasyRankingService: FantasyRankingService) { } 
+  constructor(private fantasyRankingService: FantasyRankingService) { }
 
-  ngOnInit(){ 
-    this.fetchRankingData(); 
+  ngOnInit() {
+    this.fetchActiveGames();
+  }
 
-    // this.fantasyRankingService.getPointsSummary('1375842', 'c5a19035-2c68-4ca0-aec9-5455b215d03e', 'TestUser').subscribe(response => { 
-    //   if (response){ 
-    //     console.log(response); 
-    //   }
-    // });
+  fetchRankingData(gameId: string): void {
+      this.fantasyRankingService.getFantasyRanking(gameId).subscribe(response => {
+        if (response) {
+          this.rankingData = response;
+        }
+      });
+  }
+
+  fetchActiveGames(): void {
+
+    this.activeGames = sessionStorage.getItem(ACTIVE_GAMES) ? JSON.parse(sessionStorage.getItem(ACTIVE_GAMES)!) as Game[] : null;
+
+    if (!this.activeGames) {
+      this.fantasyRankingService.getActiveGames().subscribe(response => {
+        if (response) {
+          this.activeGames = response;
+          sessionStorage.setItem(ACTIVE_GAMES, JSON.stringify(this.activeGames));
+        }
+      });
+    }
+  }
+
+  selectGame(game: Game) {
+    this.selectedGame = game;
+    this.fetchRankingData(this.selectedGame.id);
   } 
 
-  fetchRankingData():void{  
-    this.fantasyRankingService.getFantasyRanking('1375842').subscribe(response => { 
-      if (response){ 
-        this.rankingData = response; 
-        console.log(this.rankingData);
-      }
-    }); 
-
+  viewDetails(row:Ranking){ 
+    console.log (row.name);
   }
 
 }
