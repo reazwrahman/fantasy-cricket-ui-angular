@@ -27,6 +27,11 @@
                 /> 
                 <div class="carousel-info">
                     <h3> {{game?.title}} </h3>
+                    <a [href]="game?.scorecard" target="_blank" rel="noopener noreferrer">
+                        Match Scorecard (ESPN)
+                    </a>
+                    <br> 
+                    <br>
                 </div>
             </div> 
         </div> 
@@ -58,7 +63,7 @@
             <p><strong>Prediction Bonus:</strong> {{ pointsSummary?.prediction_bonus }}</p>
             <p><strong>Total Points:</strong> {{ pointsSummary?.total_points }}</p> 
         </div>
-        
+
     </ng-container>
         <!-- Use 'ng-template' for alternate content -->
         <ng-template #otherContent>

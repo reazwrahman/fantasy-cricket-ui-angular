@@ -9,7 +9,12 @@
                 [alt] ="game.title"  
                 /> 
                 <div class="carousel-info">
-                    <h3>{{ game.title }}</h3>
+                    <h3>{{ game.title }}</h3> 
+                    <a [href]="game.scorecard" target="_blank" rel="noopener noreferrer">
+                        Match Scorecard (ESPN)
+                    </a>
+                    <br> 
+                    <br>
                     <button class="select-button"(click)="selectGame(game)"> Select</button>
                 </div>
             </div>

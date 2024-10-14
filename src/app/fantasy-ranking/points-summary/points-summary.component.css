@@ -82,6 +82,26 @@
     background: linear-gradient(135deg, #3a6073, #1d4350);
 }
 
+.carousel-info a {
+    display: inline-block; /* Keeps the link as an inline block for better control */
+    margin-top: 8px; /* Space above the link */
+    margin-bottom: 12px; /* Space below the link */
+    color: #3498db; /* Link color */
+    text-decoration: none; /* Removes underline */
+    font-size: 16px; /* Font size */
+    font-weight: bold; /* Bold text */
+    transition: color 0.3s ease; /* Smooth color transition on hover */
+}
+
+.carousel-info a:hover {
+    color: #2980b9; /* Darker shade on hover */
+    text-decoration: underline; /* Underline on hover for indication */
+}
+
+.carousel-info a:active {
+    color: #1f4f7c; /* Darker shade when the link is clicked */
+}
+
 /* Make carousel responsive */
 @media (max-width: 768px) {
     .carousel {

@@ -13,6 +13,7 @@ export interface Game {
   id: string;
   title: string;
   image: string;
+  scorecard: string;
 }
 
 export interface Ranking {
@@ -40,7 +41,7 @@ export class FantasyRankingComponent {
 
   selectedGame: Game | null = null;
   activeGames: Game[] | null = null;
-  rankingData: RankingData | null = null; 
+  rankingData: RankingData | null = null;
   selectedUser: Ranking | null = null;
 
   constructor(private fantasyRankingService: FantasyRankingService,
@@ -78,12 +79,12 @@ export class FantasyRankingComponent {
   }
 
   viewDetails(row: Ranking) {
-    if (row) { 
-      this.selectedUser = row; 
+    if (row) {
+      this.selectedUser = row;
       delete this.selectedUser.medal;
       sessionStorage.setItem(SELECTED_GAME, JSON.stringify(this.selectedGame));
       sessionStorage.setItem(SELECTED_USER, JSON.stringify(this.selectedUser));
-      
+
       this.router.navigate([`/fantasy-ranking/points-summary`]);
     }
   }
