@@ -6,7 +6,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## How to deploy 
+## How to deploy
+ 
 0) make sure the 'ENV' variable in src/app/config.ts is set to 'REMOTE'
 
 a) Run the following command to generate distribution files: 
