@@ -18,7 +18,10 @@ From:
 To:
 <base href="./">
 
-c) deploy to github pages by running: 
+c) check if a file called 'CNAME' exists in dist/browser, if not create one 
+and in the content simply put: cmcc-fantasy-cricket.click
+
+d) deploy to github pages by running: 
 ```npx angular-cli-ghpages --dir=dist/angular_fantasy_cricket/browser```
 
 
