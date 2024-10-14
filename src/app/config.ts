@@ -10,7 +10,8 @@ type ApiConfig = {
 const apiConfig: ApiConfig = {
     activeGames: '/fantasyContest/getActiveGames',
     fantasyRanking: '/fantasyContest/displayContestRanking?match_id={matchId}',
-    pointsSummary: '/fantasyContest/displayFullSquadSummary?match_id={matchId}&user_id={userId}&user_name={userName}'
+    pointsSummary: '/fantasyContest/displayFullSquadSummary?match_id={matchId}&user_id={userId}&user_name={userName}',
+    pointsDetails:'/fantasyContest/displayPointsBreakdown?match_id={matchId}&user_id={userId}&user_name={userName}'
 };
 
 

@@ -83,8 +83,7 @@ export class FantasyRankingComponent {
       delete this.selectedUser.medal;
       sessionStorage.setItem(SELECTED_GAME, JSON.stringify(this.selectedGame));
       sessionStorage.setItem(SELECTED_USER, JSON.stringify(this.selectedUser));
-
-      console.log(JSON.stringify(row));
+      
       this.router.navigate([`/fantasy-ranking/points-summary`]);
     }
   }

@@ -1,1 +1,23 @@
-<p>points-details works!</p>
+<div class="game-container" *ngIf="selectedData">
+<table class="points-details-table">
+    <thead>
+        <tr>
+            <th *ngFor="let heading of selectedData!.headings">{{ heading }}</th> <!-- Ensure headings are shown -->
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let row of selectedData!.rows">
+            <td>{{ row[0] }}</td>
+            <td>{{ row[1] }}</td>
+            <td>{{ row[2] }}</td>
+            <td>{{ row[3] }}</td>
+        </tr>
+    </tbody>
+  </table> 
+    <div class="rule-reminder">  
+        <h2> How are milestone points calculated? </h2>
+        <p> Batting Milestone points: for every 25 runs, 10 milestone points are added </p> 
+        <p> Bowling Milestone Points: for every wicket, 10 milestone points are added </p> 
+    </div>
+</div> 
+  

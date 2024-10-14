@@ -10,20 +10,27 @@ import {getApiUrl} from '../config'
 })
 export class FantasyRankingService {
 
-  constructor(private http: HttpClient) { } 
+  constructor(private http: HttpClient) { }  
+
+  getActiveGames(): Observable<any> {
+    const apiUrl = getApiUrl('activeGames'); 
+    return this.http.get(apiUrl);
+  }
 
   getFantasyRanking(matchId: string): Observable<any> {
-    const apiUrl = getApiUrl('fantasyRanking', { matchId });  // Replace {matchId} in the URL
+    const apiUrl = getApiUrl('fantasyRanking', { matchId }); 
     return this.http.get(apiUrl);
   } 
 
   getPointsSummary(matchId: string, userId:string, userName:string): Observable<any> {
-    const apiUrl = getApiUrl('pointsSummary', { matchId, userId, userName });  // Replace {matchId} in the URL
+    const apiUrl = getApiUrl('pointsSummary', { matchId, userId, userName }); 
+    return this.http.get(apiUrl);
+  }  
+
+  getPointsDetails(matchId: string, userId:string, userName:string): Observable<any> {
+    const apiUrl = getApiUrl('pointsDetails', { matchId, userId, userName });  
     return this.http.get(apiUrl);
   } 
 
-  getActiveGames(): Observable<any> {
-    const apiUrl = getApiUrl('activeGames');  // Replace {matchId} in the URL
-    return this.http.get(apiUrl);
-  }
+
 }

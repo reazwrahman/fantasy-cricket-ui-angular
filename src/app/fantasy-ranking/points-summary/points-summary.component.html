@@ -51,20 +51,19 @@
                 <td *ngFor="let cell of row">{{ cell }}</td>
                 </tr>
             </tbody>
-            </table>  
-        </ng-container>
+            </table> 
 
+        <div class="additional-info">
+            <h2><strong>Prediction:</strong> {{ pointsSummary?.match_prediction }}</h2>
+            <p><strong>Prediction Bonus:</strong> {{ pointsSummary?.prediction_bonus }}</p>
+            <p><strong>Total Points:</strong> {{ pointsSummary?.total_points }}</p> 
+        </div>
+        
+    </ng-container>
         <!-- Use 'ng-template' for alternate content -->
         <ng-template #otherContent>
             <app-points-details [tab]="selectedTab"></app-points-details>
-            <h2> Placeholder Content</h2>
         </ng-template>
-
-        <!-- display the content below regardless of tab selection -->
-        <h2><strong>Prediction:</strong> {{ pointsSummary?.match_prediction }}</h2>
-        <p><strong>Prediction Bonus:</strong> {{ pointsSummary?.prediction_bonus }}</p>
-        <p><strong>Total Points:</strong> {{ pointsSummary?.total_points }}</p>
-    
         <button class="go-back-button"(click)="goBack()"> Go Back</button>
     </div>
       

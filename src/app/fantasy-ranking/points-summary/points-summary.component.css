@@ -3,7 +3,6 @@
     width: 100%; 
     height: auto;
     margin: 0 auto; /* Centering the container */
-    /*padding: 10px; /* Add padding around the main content */
     background-color: #131a24;/* Background color to unify the look */
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Soft shadow */
@@ -19,8 +18,6 @@
     text-transform: uppercase; /* Uppercase letters for emphasis */
     letter-spacing: 2px; /* Space between letters for a more dynamic look */
     background: linear-gradient(135deg, #e2f7ef, #e2f6f1); /* Match your theme with a gradient */
-    -webkit-background-clip: text; /* Clip the background to the text */
-    -webkit-text-fill-color: transparent; /* Fill the text with the gradient */
     text-shadow: 2px 2px 4px rgba(170, 198, 254, 0.7), 0 0 10px rgba(255, 255, 255, 0.3); /* Soft shadow for depth */
     padding: 10px; /* Padding around the text */
     border-radius: 8px; /* Rounded corners */
@@ -92,7 +89,7 @@
 }
 /* ---------------------------------------------------- */ 
 
-/* ---------------------- styling for the table container ------------------------------ */
+/* ---------------------- styling for the table ------------------------------ */
 .ranking-container {
     margin: 20px auto;
     padding: 25px;
@@ -104,25 +101,7 @@
     font-family: 'Arial', sans-serif;
 }
 
-/* ---------------------- h2 and p elements ------------------------------ */
-h2 {
-    text-align: center;
-    margin-bottom: 15px;
-    color: #4DAF7C; /* Light green to match table theme */
-    font-size: 2em;
-    letter-spacing: 1.5px; /* Add spacing for modern feel */
-    text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.7); /* Subtle shadow for pop */
-}
 
-p {
-    text-align: center;
-    margin: 5px 0;
-    font-size: 1.2em;
-    color: #e0e0e0;
-    line-height: 1.5;
-}
-
-/* ---------------------- styling for the table ------------------------------ */
 table { 
     width: 90%;
     border-collapse: collapse;
@@ -248,4 +227,35 @@ td {
     transform: scale(0.95); /* Press effect */
     box-shadow: 0px 4px 10px rgba(0, 255, 156, 0.4); /* Softer glow */
 }
+/* ------------------------------------------------------------ */ 
 
+.additional-info { 
+    width: auto;
+    max-width: 70%; 
+    margin: 30px auto; /* Center the div with margin */
+    padding: 20px; 
+    background-color: #171e1e; /* Same dark background as table header */
+    border-radius: 12px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Subtle shadow for depth */
+    color: #fff;
+    text-align: center;
+    line-height: 1.6;
+    font-family: 'Arial', sans-serif;
+}
+
+.additional-info h2{
+    color: #4DAF7C; /* Light green for consistency */ 
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin-bottom: 10px;
+    font-size: 1.8em;
+    text-transform: uppercase;
+    letter-spacing: 1px; /* Slight spacing for a clean look */
+}
+
+.additional-info p {
+    font-size: 1.1em; 
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin: 8px 0;
+    color: #e0e0e0; /* Slightly lighter font for paragraphs */
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
