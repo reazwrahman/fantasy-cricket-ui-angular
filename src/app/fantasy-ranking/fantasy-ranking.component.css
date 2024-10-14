@@ -42,7 +42,8 @@
 
 /* Carousel styles */
 .carousel {
-    display: flex;
+    display: flex; 
+    flex-wrap: wrap;
     gap: 15px; /* Space between items */
     overflow-x: auto; /* Allow horizontal scrolling */
     padding: 10px; /* Inner padding */
@@ -55,7 +56,7 @@
 /* Prevent the first item from being cut off */
 .carousel-item {
     flex: 0 0 auto; /* Ensure items don’t shrink */
-    max-width: 300px;
+    max-width: 200px;
     max-height: 400px;
     background: linear-gradient(135deg, #202734, #293b5b);
     border-radius: 12px;
@@ -128,12 +129,13 @@
 }
 
 /* Make carousel responsive */
-@media (max-width: 768px) {
-    .carousel {
-        padding: 0 10px; 
+@media (max-width: 600px) {
+    .carousel-item {
+        flex: 0 0 150px;; /* Full width on very small screens */
+        height: auto; /* Adjust height to fit content */
     } 
-    .carousel-item{ 
-        max-width: 150px;
+    .carousel{ 
+        flex-wrap: nowrap;
     }
 }
 /* ---------------------------------------------------- */
