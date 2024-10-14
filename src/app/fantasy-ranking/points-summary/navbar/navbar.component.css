@@ -30,7 +30,11 @@
     color: #ffffff; /* White text color */
     cursor: pointer; /* Pointer on hover */
     position: relative; /* Position for pseudo-elements */
-    transition: color 0.3s; /* Smooth color transition */
+    transition: color 0.3s, background-color 0.3s; /* Smooth color transition */
+    padding: 0.5rem 1rem; /* Padding to increase clickable area */
+    background-color: #031400; /* Button-like background color */
+    border-radius: 5px; /* Rounded corners */
+    display: inline-block; /* Makes the li behave like a button */
 }
 
 /* Active Tab Indicator */

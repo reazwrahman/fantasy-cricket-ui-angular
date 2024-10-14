@@ -8,6 +8,7 @@
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Soft shadow */
 }
 
+
 .page-title { 
     text-align: center; /* Center the title */ 
     width: 100%;
@@ -18,11 +19,14 @@
     text-transform: uppercase; /* Uppercase letters for emphasis */
     letter-spacing: 2px; /* Space between letters for a more dynamic look */
     background: linear-gradient(135deg, #e2f7ef, #e2f6f1); /* Match your theme with a gradient */
+    -webkit-background-clip: text; /* Clip the background to the text */
+    -webkit-text-fill-color: transparent; /* Fill the text with the gradient */
     text-shadow: 2px 2px 4px rgba(170, 198, 254, 0.7), 0 0 10px rgba(255, 255, 255, 0.3); /* Soft shadow for depth */
     padding: 10px; /* Padding around the text */
     border-radius: 8px; /* Rounded corners */
     display: inline-block; /* Make the title an inline-block for padding */
 }
+
 
 
 /* ----------------show active games------------------- */
