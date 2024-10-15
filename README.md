@@ -7,7 +7,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
 ## How to deploy
- 
+
 0) make sure the 'ENV' variable in src/app/config.ts is set to 'REMOTE'
 
 a) Run the following command to generate distribution files: 
@@ -20,7 +20,10 @@ To:
 <base href="./">
 
 c) check if a file called 'CNAME' exists in dist/browser, if not create one 
-and in the content simply put: cmcc-fantasy-cricket.click
+and in the content simply put: cmcc-fantasy-cricket.click 
+or from root directory run: ```cp backups/CNAME dist/angular_fantasy_cricket/browser/.```
+c.1) copy the 404.html into the dist directory: 
+```cp backups/404.html dist/angular_fantasy_cricket/browser/.```
 
 d) deploy to github pages by running: 
 ```npx angular-cli-ghpages --dir=dist/angular_fantasy_cricket/browser```

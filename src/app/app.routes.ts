@@ -3,11 +3,13 @@ import { FantasyRankingComponent } from './fantasy-ranking/fantasy-ranking.compo
 import { PointsSummaryComponent } from './fantasy-ranking/points-summary/points-summary.component';
 import { ErrorComponentComponent } from './error-component/error-component.component';
 
+
 export const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: 'home', component: FantasyRankingComponent }, 
     { path: 'fantasy-ranking', component: FantasyRankingComponent }, 
     { path: 'fantasy-ranking/points-summary', component: PointsSummaryComponent}, 
+    { path: 'server-error', component:ErrorComponentComponent},
     { path: '**', component:ErrorComponentComponent}
   ];
   
