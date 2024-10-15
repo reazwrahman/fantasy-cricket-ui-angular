@@ -8,7 +8,9 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The appli
 
 ## How to deploy
 
-0) make sure the 'ENV' variable in src/app/config.ts is set to 'REMOTE'
+a.0) make sure the 'ENV' variable in src/app/config.ts is set to 'REMOTE' 
+
+a.01) delete dist/ : ```rm -rf dist/```
 
 a) Run the following command to generate distribution files: 
 
