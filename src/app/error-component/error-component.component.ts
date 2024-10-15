@@ -89,7 +89,7 @@ export class ErrorComponentComponent implements AfterViewInit {
     }
 
     // If the ball moves off the canvas, pause and reset with a delay
-    if (this.ball.x - this.ball.radius >= this.canvasRef.nativeElement.width - 50 && !this.animationPaused) {
+    if (this.ball.x - this.ball.radius >= this.canvasRef.nativeElement.width+10 && !this.animationPaused) {
       this.animationPaused = true; // Pause animation to prevent multiple resets
       setTimeout(() => this.resetBall(), 1000); // 1 second delay before resetting
     }
