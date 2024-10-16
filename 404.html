@@ -11,9 +11,13 @@
   <body>
     <app-root></app-root>
     <script>
-      // Redirect all 404 paths to the Angular app
-       if (location.pathname !== '/') {
-         location.href = '/#' + '/server-error';
+      // Check if the current route doesn't match any valid routes
+      const validRoutes = ['/', '/server-error']; // List valid routes here
+      const currentPath = location.pathname;
+    
+      if (!validRoutes.includes(currentPath)) {
+        // Redirect to /server-error for unknown paths
+        location.href = '/#/server-error';
       }
     </script>
     <script src="polyfills-FFHMD2TL.js" type="module"></script>
