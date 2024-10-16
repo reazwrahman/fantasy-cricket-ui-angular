@@ -11,14 +11,7 @@
   <body>
     <app-root></app-root>
     <script>
-      // Check if the current route doesn't match any valid routes
-      const validRoutes = ['/', '/server-error']; // List valid routes here
-      const currentPath = location.pathname;
-    
-      if (!validRoutes.includes(currentPath)) {
-        // Redirect to /server-error for unknown paths
-        location.href = '/#/server-error';
-      }
+      location.href = '/#/server-error';
     </script>
     <script src="polyfills-FFHMD2TL.js" type="module"></script>
     <script src="main-BMKRRSJO.js" type="module"></script>
