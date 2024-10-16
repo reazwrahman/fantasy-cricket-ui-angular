@@ -1,13 +1,23 @@
 <!doctype html>
-<html lang="en" data-critters-container>
-<head>
-  <meta charset="utf-8">
-  <title>FantasyCricket</title>
-  <base href="./">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-<link rel="stylesheet" href="styles-5INURTSO.css"></head>
-<body>
-  <app-root></app-root>
-<script src="polyfills-FFHMD2TL.js" type="module"></script><script src="main-BMKRRSJO.js" type="module"></script></body>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>FantasyCricket</title>
+    <base href="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles-5INURTSO.css">
+  </head>
+  <body>
+    <app-root></app-root>
+    <script>
+      // Redirect all 404 paths to the Angular app
+      if (location.pathname !== '/') {
+        location.href = '/' + '#' + location.pathname;
+      }
+    </script>
+    <script src="polyfills-FFHMD2TL.js" type="module"></script>
+    <script src="main-BMKRRSJO.js" type="module"></script>
+  </body>
 </html>
+
