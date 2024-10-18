@@ -49,7 +49,7 @@
     overflow-x: auto; /* Allow horizontal scrolling */
     padding: 10px; /* Inner padding */
     scroll-snap-type: x mandatory; /* Enable snap scrolling */
-    /*scrollbar-width: none; /* Hide scrollbar for Firefox */
+    scrollbar-width: auto; /* Hide scrollbar for Firefox */
 }
 
 
