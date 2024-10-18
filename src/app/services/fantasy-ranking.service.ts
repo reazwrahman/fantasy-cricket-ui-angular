@@ -17,21 +17,7 @@ export class FantasyRankingService {
 
   private handleError(error: HttpErrorResponse): Observable<null> {
     console.error('HTTP error:', error); // Log error details
-
-    // Check for specific status codes and act accordingly
-    if (error.status === 400) { 
-      this.router.navigate(['/server-error']);
-      alert('Invalid request. Please check the input values.');
-    } else if (error.status === 500) {
-      this.router.navigate(['/server-error']);
-    } else if (error.status === 0) {
-      // Handle Connection Refused / Network Error (status 0) 
-      this.router.navigate(['/server-error']);
-    } else {
-      // Default behavior for other status codes
-      this.router.navigate(['/error']);
-    }
-
+    this.router.navigate(['/server-error']);
     // Return a fallback observable to avoid breaking the app
     return of(null);
   }

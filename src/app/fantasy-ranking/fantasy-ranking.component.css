@@ -37,18 +37,19 @@
     width: 100%; /* Full width */
     overflow: hidden; /* Hide any overflow */
     padding: 10px; /* Padding around the container */
-    box-sizing: border-box; /* Include padding in the layout */
+    box-sizing: border-box; /* Include padding in the layout */ 
+    position: relative;
 }
 
 /* Carousel styles */
 .carousel {
     display: flex; 
-    flex-wrap: wrap;
+    flex-wrap: nowrap; /* overflow = true */ 
     gap: 15px; /* Space between items */
     overflow-x: auto; /* Allow horizontal scrolling */
     padding: 10px; /* Inner padding */
     scroll-snap-type: x mandatory; /* Enable snap scrolling */
-    scrollbar-width: none; /* Hide scrollbar for Firefox */
+    /*scrollbar-width: none; /* Hide scrollbar for Firefox */
 }
 
 
@@ -57,7 +58,7 @@
 .carousel-item {
     flex: 0 0 auto; /* Ensure items don’t shrink */
     max-width: 200px;
-    max-height: 400px;
+    max-height: 300px;
     background: linear-gradient(135deg, #202734, #293b5b);
     border-radius: 12px;
     padding: 20px;
@@ -70,7 +71,7 @@
 }
 
 .carousel-item img {
-    width: 100%; /* Make the image fill the width of the tile */
+    width: 80%; /* Make the image fill the width of the tile */
     height: auto; /* Maintain the aspect ratio of the image */
     border-radius: 8px; /* Slight rounding for image corners */
     object-fit: cover; /* Cover the entire area while maintaining aspect ratio */

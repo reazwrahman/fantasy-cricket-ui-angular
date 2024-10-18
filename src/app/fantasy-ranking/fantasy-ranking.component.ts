@@ -44,6 +44,8 @@ export class FantasyRankingComponent {
   rankingData: RankingData | null = null;
   selectedUser: Ranking | null = null;
 
+  rankingIsAvailable: boolean = true; // available in the db
+
   constructor(private fantasyRankingService: FantasyRankingService,
     private router: Router) { }
 
@@ -53,7 +55,11 @@ export class FantasyRankingComponent {
 
   fetchRankingData(gameId: string): void {
     this.fantasyRankingService.getFantasyRanking(gameId).subscribe(response => {
-      if (response) {
+      console.log(response.status);
+      if (response.status === "error") { 
+        // TODO: update HTML with this info
+        this.rankingIsAvailable = false;
+      } else {
         this.rankingData = response;
       }
     });
