@@ -59,7 +59,7 @@ export class FantasyRankingComponent {
     this.fantasyRankingService.getFantasyRanking(gameId).subscribe(response => {
       if (response.status === "206") { 
         this.rankingIsAvailable = false;  
-        this.defaultMessage = "No ranking available yet. Active participants:"
+        this.defaultMessage = "No ranking available yet, active participants:"
         this.activeContestants = response.data;
       } else { 
         this.rankingIsAvailable = true;
@@ -84,6 +84,7 @@ export class FantasyRankingComponent {
 
   selectGame(game: Game) {
     this.selectedGame = game;
+    this.rankingData = null;
     this.fetchRankingData(this.selectedGame.id);
   }
 
