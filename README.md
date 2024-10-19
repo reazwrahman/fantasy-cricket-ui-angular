@@ -21,13 +21,7 @@ From:
 To:
 <base href="./">
 
-c) check if a file called 'CNAME' exists in dist/browser, if not create one 
-and in the content simply put: cmcc-fantasy-cricket.click 
-or from root directory run: ```cp backups/CNAME dist/angular_fantasy_cricket/browser/.```
-c.1) copy the 404.html into the dist directory: 
-```cp backups/404.html dist/angular_fantasy_cricket/browser/.```
-
-d) deploy to github pages by running: 
+c) deploy to github pages by running: 
 ```npx angular-cli-ghpages --dir=dist/angular_fantasy_cricket/browser```
 
 
