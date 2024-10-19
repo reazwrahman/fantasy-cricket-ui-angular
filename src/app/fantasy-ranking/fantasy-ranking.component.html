@@ -21,7 +21,7 @@
         </div> 
     </div>
 
-    <div class="ranking-container" *ngIf="rankingData"> 
+    <div class="ranking-container" *ngIf="rankingIsAvailable && rankingData; else noRanking">
         <h2 class="table-title">{{this.selectedGame?.title}}</h2>
         <table>
             <thead>
@@ -33,7 +33,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="rank-1" *ngIf="rankingData!.rankings[0]">
+                <tr class="rank-1" *ngIf="rankingIsAvailable == true">
                     <td>{{ rankingData!.rankings[0].rank }} {{ rankingData!.rankings[0].medal }}</td>
                     <td>{{ rankingData!.rankings[0].name }}</td>
                     <td>{{ rankingData!.rankings[0].score }} </td>
@@ -63,4 +63,15 @@
             {{ rankingData!.last_updated }}
         </div>
     </div>
+    <!-- if no ranking is available yet -->
+    <ng-template #noRanking>
+        <div class="no-ranking-container">
+          <h3>{{defaultMessage}}</h3>
+          <ul>
+            <li *ngFor="let contestant of activeContestants; index as i">
+                {{ contestant }}
+              </li>
+          </ul>
+        </div>
+      </ng-template>
 </div>

@@ -120,6 +120,5 @@ export class ErrorComponentComponent implements AfterViewInit {
 
   goHome() {
     this.router.navigate([`/home`]);
-    console.log('hi');
   }
 }

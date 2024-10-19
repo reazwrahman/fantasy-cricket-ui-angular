@@ -49,8 +49,7 @@ export class PointsDetailsComponent {
     this.gameDataMapped = {};
   }
 
-  ngOnInit() { 
-    console.log("initializing");
+  ngOnInit() {
     this.getGameInfo();
     this.getUserInfo();
     this.getPointsBreakdown();
@@ -58,7 +57,6 @@ export class PointsDetailsComponent {
 
   ngOnChanges(changes: SimpleChanges) { 
     if (changes['tab'] && !changes['tab'].isFirstChange() && this.gameData) {
-      console.log('im here');
       this.mapDataToTab();
     }
   }

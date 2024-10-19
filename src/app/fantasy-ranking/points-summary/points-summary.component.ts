@@ -65,8 +65,7 @@ export class PointsSummaryComponent {
     this.selectedTab = tab; // Update the selected tab 
     if(this.selectedTab == SUMMARY_TAB){ 
       this.getPointsSummary();
-    } 
-    //console.log(this.selectedTab);
+    }
   }
 
   getPointsSummary(){ 

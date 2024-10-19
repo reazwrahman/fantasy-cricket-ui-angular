@@ -264,3 +264,49 @@ tbody tr:nth-child(even) {
     td:nth-of-type(2):before { content: "Name"; }
     td:nth-of-type(3):before { content: "Score"; }
 }
+
+
+/* ------ no ranking available container ------- */
+.no-ranking-container {
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 800px;
+    background: rgba(0, 0, 0, 0.8); /* Dark background for modern look */
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Soft shadow */
+    color: #4DAF7C; /* Green text color */
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+}
+
+.no-ranking-container h3 {
+    margin-bottom: 15px;
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.no-ranking-container ul {
+    list-style-type: none; /* Remove default bullet points */
+    padding: 0;
+}
+
+.no-ranking-container li {
+    margin: 8px 0;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.1); /* Light overlay for individual items */
+    border-radius: 8px;
+    font-size: 1.2rem;
+    color: #ffffff; /* White text for contrast */
+    text-align: left;
+}
+
+.no-ranking-container li::before {
+    content: counters(item, ".") ". "; /* Add numbering */
+    counter-increment: item; /* Increase the counter */
+    font-weight: bold;
+    color: #4DAF7C; /* Green for the numbers */
+}
+
+ul {
+    counter-reset: item; /* Reset counter for the list */
+}

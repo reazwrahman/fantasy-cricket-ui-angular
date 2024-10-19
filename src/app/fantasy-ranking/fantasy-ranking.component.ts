@@ -44,7 +44,9 @@ export class FantasyRankingComponent {
   rankingData: RankingData | null = null;
   selectedUser: Ranking | null = null;
 
-  rankingIsAvailable: boolean = true; // available in the db
+  defaultMessage:string = "Select a game to view ranking";
+  rankingIsAvailable: boolean | null = null; // available in the db 
+  activeContestants:string[] = [];
 
   constructor(private fantasyRankingService: FantasyRankingService,
     private router: Router) { }
@@ -55,11 +57,12 @@ export class FantasyRankingComponent {
 
   fetchRankingData(gameId: string): void {
     this.fantasyRankingService.getFantasyRanking(gameId).subscribe(response => {
-      console.log(response.status);
-      if (response.status === "error") { 
-        // TODO: update HTML with this info
-        this.rankingIsAvailable = false;
-      } else {
+      if (response.status === "206") { 
+        this.rankingIsAvailable = false;  
+        this.defaultMessage = "No ranking available yet. Active participants:"
+        this.activeContestants = response.data;
+      } else { 
+        this.rankingIsAvailable = true;
         this.rankingData = response;
       }
     });
