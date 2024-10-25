@@ -1,4 +1,4 @@
-const ENV: string = 'REMOTE'; // 'LOCAL' or 'REMOTE' based on the environment
+const ENV: string = 'LOCAL'; // 'LOCAL' or 'REMOTE' based on the environment
 
 const LOCAL_ENDPOINT = 'http://0.0.0.0:5001/'
 const REMOTE_ENDPOINT = 'https://pe1nvrpbz4.execute-api.us-east-1.amazonaws.com/dev'
@@ -11,7 +11,11 @@ const apiConfig: ApiConfig = {
     activeGames: '/fantasyContest/getActiveGames',
     fantasyRanking: '/fantasyContest/displayContestRanking?match_id={matchId}',
     pointsSummary: '/fantasyContest/displayFullSquadSummary?match_id={matchId}&user_id={userId}&user_name={userName}',
-    pointsDetails:'/fantasyContest/displayPointsBreakdown?match_id={matchId}&user_id={userId}&user_name={userName}'
+    pointsDetails:'/fantasyContest/displayPointsBreakdown?match_id={matchId}&user_id={userId}&user_name={userName}',
+
+    // Authentication endpoints 
+    login: '/auth/login', 
+    register: '/auth/register'
 };
 
 
