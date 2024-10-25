@@ -59,35 +59,43 @@ export class RegistrationComponent {
 
   register() {
     this.authService.register(this.email, this.username, this.password).subscribe( 
-      (response) => {
-        Swal.fire({
-          icon: 'success',
-          title: 'Registration Successful',
-          text: "Please login here to complete the registration",
-          timer: 1500,
-          showConfirmButton: false,
-        });
-        this.router.navigate(['auth/login']); // Navigate to login or another page
+      (response) => { 
+        this.handleSucccess(response);
       },
       (error) => {
-        let errorMessage = 'Something went wrong. Please try again.';
-        
-        // Extracting the error message from the response body
-        if (error.status === 400 && error.error?.error) {
-          errorMessage = error.error.error;
-        } else if (error.status === 500) {
-          errorMessage = 'Something went wrong on our end, please try again in a few minutes.';
-        }
-  
-        Swal.fire({
-          icon: 'error',
-          title: 'Registration Failed',
-          text: errorMessage,
-          confirmButtonText: 'Try Again',
-        });
-        console.error('Registration failed:', error);
+       this.handleError(error);
       }
     );
+  }
+
+  handleSucccess(respose:any){ 
+    Swal.fire({
+      icon: 'success',
+      title: 'Registration Successful',
+      text: "A confirmation link has been sent to your email. To generate another link, login first.",
+      timer: 15000,
+      showConfirmButton: true,
+    });
+    this.router.navigate(['auth/login']); // Navigate to login or another page 
+  } 
+
+  handleError(error:any){ 
+    let errorMessage = 'Something went wrong. Please try again.';
+        
+    // Extracting the error message from the response body
+    if (error.status === 400 && error.error?.error) {
+      errorMessage = error.error.error;
+    } else if (error.status === 500) {
+      errorMessage = 'Something went wrong on our end, please try again in a few minutes.';
+    }
+
+    Swal.fire({
+      icon: 'error',
+      title: 'Registration Failed',
+      text: errorMessage,
+      confirmButtonText: 'Try Again',
+    });
+    console.error('Registration failed:', error); 
   }
   
 

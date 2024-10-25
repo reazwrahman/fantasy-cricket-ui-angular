@@ -15,7 +15,8 @@ const apiConfig: ApiConfig = {
 
     // Authentication endpoints 
     login: '/auth/login', 
-    register: '/auth/register'
+    register: '/auth/register', 
+    confirm: '/auth/confirm'
 };
 
 

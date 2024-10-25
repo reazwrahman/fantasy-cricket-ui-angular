@@ -34,33 +34,50 @@ export class LoginComponent {
   logIn() {
     this.authService.login(this.email, this.password).subscribe(
       (response) => {
-        Swal.fire({
-          icon: 'success',
-          title: 'Login Successful',
-          text: 'Welcome back!',
-          timer: 1500,
-          showConfirmButton: false,
-        });
-        this.router.navigate([`/fantasy-ranking`]);
-        this.storeToken(response.token);
-        localStorage.setItem("username", response.username);
+        this.handleSuccess(response);
       },
       (error) => {
-        console.error('Login failed:', error);
-        const errorMessage = error.error?.message || 'Something went wrong. Please try again.';
+        this.handleError(error);
+      });
+  }
 
-        Swal.fire({
-          icon: 'error',
-          title: 'Login Failed',
-          text: errorMessage,
-          confirmButtonText: 'Try Again',
+  handleSuccess(response: any) {
+    Swal.fire({
+      icon: 'success',
+      title: 'Login Successful',
+      text: 'Welcome back!',
+      timer: 1500,
+      showConfirmButton: false,
+    });
+    this.storeToken(response.token);
+    const userInfo = {
+      username: response.username, userId: response.user_id,
+      email: this.email
+    };
+    localStorage.setItem("userInfo", JSON.stringify(userInfo));
 
-        })
-      })
-  } 
+    if (response.confirmed) {
+      this.router.navigate([`/fantasy-ranking`]);
+    } else {
+      this.router.navigate(['auth/unconfirmed']);
+    }
+  }
+
+  handleError(error: any) {
+    console.error('Login failed:', error);
+    const errorMessage = error.error?.message || 'Something went wrong. Please try again.';
+
+    Swal.fire({
+      icon: 'error',
+      title: 'Login Failed',
+      text: errorMessage,
+      confirmButtonText: 'Try Again',
+
+    })
+  }
 
   storeToken(token: string) {
-    this.cookieService.set('authToken', token, { 
+    this.cookieService.set('authToken', token, {
       expires: 1, // 1 day
       path: '/',
       secure: true, // Optional, for HTTPS only
@@ -70,9 +87,9 @@ export class LoginComponent {
 
   onLogin() {
     this.logIn();
-  } 
+  }
 
-  navigateToRegister(){ 
+  navigateToRegister() {
     this.router.navigate(['auth/register']);
   }
 }
