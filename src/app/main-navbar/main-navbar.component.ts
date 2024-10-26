@@ -14,21 +14,39 @@ import { AuthService } from '../services/auth.service';
   templateUrl: './main-navbar.component.html',
   styleUrl: './main-navbar.component.css'
 })
-export class MainNavbarComponent {
+export class MainNavbarComponent{
 
 
   constructor(private authService: AuthService,
-    private router: Router, private cookieService: CookieService) { }
+    private router: Router, private cookieService: CookieService) { } 
 
-  isLoggedIn():boolean { 
-    let loggedIn:boolean =  this.authService.isUserLoggedIn(); 
-    console.log("logged in? "+ loggedIn);
-    return loggedIn;
-
+  ngOnInit(){ 
+    this.onInitAction();
   } 
 
-  logout(){ 
+  // route to unconfirmed if applicable
+  onInitAction(){ 
+    if (this.authService.isUserLoggedIn() && !this.authService.isUserConfirmed()){ 
+      this.router.navigate(['auth/unconfirmed']);
+    }
+  }
+
+  isLoggedIn(): boolean {
+    let loggedIn: boolean = this.authService.isUserLoggedIn();
+    return loggedIn;
 
   }
+
+  logout() {
+    this.authService.logout();
+  }
+
+  routeLogin() {
+    this.router.navigate(['auth/login']);
+  }
+
+  routeRanking() {
+    this.router.navigate(['/fantasy-ranking']);
+  }   
 
 }

@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, NgModule } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'; 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MainNavbarComponent } from '../main-navbar/main-navbar.component';
 
 // manually  npm-installed modules
@@ -18,7 +18,7 @@ import { AuthService } from '../services/auth.service';
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule, 
+    ReactiveFormsModule,
     MainNavbarComponent
   ],
   templateUrl: './auth.component.html',
@@ -31,6 +31,10 @@ export class LoginComponent {
 
   constructor(private authService: AuthService,
     private router: Router, private cookieService: CookieService) { }
+
+  ngOnInit() {
+    this.authService.logout();
+  }
 
 
   logIn() {
@@ -53,8 +57,10 @@ export class LoginComponent {
     });
     this.storeToken(response.token);
     const userInfo = {
-      username: response.username, userId: response.user_id,
-      email: this.email
+      username: response.username,
+      userId: response.user_id,
+      email: this.email,
+      confirmed: response.confirmed
     };
     localStorage.setItem("userInfo", JSON.stringify(userInfo));
 

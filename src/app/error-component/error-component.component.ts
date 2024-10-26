@@ -1,9 +1,12 @@
 import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router'; 
+
+import { MainNavbarComponent } from '../main-navbar/main-navbar.component';
 
 @Component({
   selector: 'app-error-component',
   standalone: true,
+  imports: [MainNavbarComponent],
   templateUrl: './error-component.component.html',
   styleUrls: ['./error-component.component.css']
 })

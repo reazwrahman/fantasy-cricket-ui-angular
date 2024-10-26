@@ -9,7 +9,8 @@ import Swal from 'sweetalert2';
 import { CookieService } from 'ngx-cookie-service';
 
 // local imports
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../services/auth.service'; 
+import { MainNavbarComponent } from '../../main-navbar/main-navbar.component';
 
 @Component({
   selector: 'app-registration',
@@ -17,7 +18,8 @@ import { AuthService } from '../../services/auth.service';
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule, 
+    MainNavbarComponent
   ],
   templateUrl: './registration.component.html',
   styleUrl: './registration.component.css'

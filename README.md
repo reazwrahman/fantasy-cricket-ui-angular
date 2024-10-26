@@ -8,20 +8,14 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The appli
 
 ## How to deploy
 
-a.0) make sure the 'ENV' variable in src/app/config.ts is set to 'REMOTE' 
+- make sure the 'ENV' variable in src/app/config.ts is set to 'REMOTE' 
 
-a.01) delete dist/ : ```rm -rf dist/```
+- delete dist/ : ```rm -rf dist/```
 
-a) Run the following command to generate distribution files: 
-
+- Run the following command to generate distribution files: 
 ```ng build --output-path=dist/angular_fantasy_cricket --base-href /``` 
-b) manually Edit the index.html in the dist/browser folder to change the base href  as follows:
-From:
-<base href="/">
-To:
-<base href="./">
 
-c) deploy to github pages by running: 
+- deploy to github pages by running: 
 ```npx angular-cli-ghpages --dir=dist/angular_fantasy_cricket/browser```
 
 

@@ -2,10 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../services/auth.service'; 
+import { MainNavbarComponent } from '../../main-navbar/main-navbar.component';
 
-@Component({
-  selector: 'unconfirmed-account',
+@Component({ 
+  standalone: true,
+  selector: 'unconfirmed-account', 
+  imports: [MainNavbarComponent],
   templateUrl: './unconfirmed.component.html',
   styleUrls: ['./unconfirmed.component.css']
 })
@@ -69,7 +72,7 @@ export class UnconfirmedComponent implements OnInit {
       icon: 'success',
       title: 'Check Email',
       text: 'A confirmation link has been sent to your Email, check spam as well',
-      timer: 15000,
+      timer: 30000,
       showConfirmButton: true,
     });
 

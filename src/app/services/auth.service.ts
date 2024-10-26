@@ -10,6 +10,7 @@ import { jwtDecode } from "jwt-decode";
 import { getApiUrl } from '../config'
 
 const JWT_KEY = "authToken";
+const USER_INFO = "userInfo";
 
 @Injectable({
   providedIn: 'root'
@@ -48,6 +49,7 @@ export class AuthService {
     return this.http.post<any>(apiUrl, body, { headers });
   }
 
+
   confirmUser(email: string, userId: string): Observable<any> {
     const token = this.cookieService.get(JWT_KEY);
     const apiUrl = getApiUrl('confirm');
@@ -81,6 +83,26 @@ export class AuthService {
       console.error('Error decoding JWT:', error);
       return false;  // Invalid token format
     }
+  }
+
+  isUserConfirmed(): boolean {
+    const storedUserInfo = localStorage.getItem("userInfo");
+    if (storedUserInfo) {
+      const userInfo = JSON.parse(storedUserInfo);
+      return Boolean(userInfo.confirmed);
+    } 
+    return false;
+  }
+
+  logout() { 
+    this.router.navigate(['auth/login']);
+    localStorage.removeItem(USER_INFO);
+    sessionStorage.clear();
+    this.deleteCookie(JWT_KEY);
+  }
+
+  private deleteCookie(name: string): void {
+    document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/`;
   }
 
 }// end of class

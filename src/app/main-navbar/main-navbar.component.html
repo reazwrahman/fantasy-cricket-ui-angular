@@ -2,9 +2,9 @@
 <nav class="navbar">
     <div class="container">
         <ul class="nav-links"> 
-            <li><a routerLink="/fantasy-ranking" routerLinkActive="active">Rankings</a></li>
-            <li><a routerLink="/home" routerLinkActive="active">Join League</a></li> 
-            <li><a routerLink="/fantasy-ranking" routerLinkActive="active">View Squad</a></li>
+            <li (click)="routeRanking()">Rankings</li>
+            <li (click)="routeRanking()">Join League</li> 
+            <li (click)="routeRanking()">View Squad</li>
 
             <li class="dropdown" *ngIf="isLoggedIn(); else guestLinks"> Account ▾
                 <ul class="dropdown-content">
@@ -15,7 +15,7 @@
             </li>
 
             <ng-template #guestLinks>
-                <li><a routerLink="/login" routerLinkActive="active">Login</a></li>
+                <li (click)="routeLogin()">Login</li>
             </ng-template>
         </ul>
     </div>
