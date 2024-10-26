@@ -6,8 +6,7 @@
             <li><a routerLink="/home" routerLinkActive="active">Join League</a></li> 
             <li><a routerLink="/fantasy-ranking" routerLinkActive="active">View Squad</a></li>
 
-            <li class="dropdown" *ngIf="isLoggedIn(); else guestLinks">
-                <button class="dropbtn">Account ▾</button>
+            <li class="dropdown" *ngIf="isLoggedIn(); else guestLinks"> Account ▾
                 <ul class="dropdown-content">
                     <li><a routerLink="/change-username">Change Username</a></li>
                     <li><a routerLink="/change-password">Change Password</a></li>

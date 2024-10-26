@@ -3,7 +3,8 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ActivatedRoute, Router } from '@angular/router'; 
 
-import { FantasyRankingService } from '../services/fantasy-ranking.service';
+import { FantasyRankingService } from '../services/fantasy-ranking.service'; 
+import { MainNavbarComponent } from '../main-navbar/main-navbar.component';
 
 export const ACTIVE_GAMES = "active_games";
 export const SELECTED_GAME = "selected_game";
@@ -33,7 +34,7 @@ interface RankingData {
 @Component({
   selector: 'app-fantasy-ranking',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MainNavbarComponent],
   templateUrl: './fantasy-ranking.component.html',
   styleUrl: './fantasy-ranking.component.css'
 })

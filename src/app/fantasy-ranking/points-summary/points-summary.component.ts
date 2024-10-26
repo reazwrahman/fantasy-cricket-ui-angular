@@ -5,8 +5,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { FantasyRankingService } from '../../services/fantasy-ranking.service';
 import { Game, Ranking, SELECTED_GAME, SELECTED_USER } from '../fantasy-ranking.component';
-import { NavbarComponent, SUMMARY_TAB } from './navbar/navbar.component'; 
+import { NavbarComponent, SUMMARY_TAB } from './navbar/navbar.component';
 import { PointsDetailsComponent } from './points-details/points-details.component';
+import { MainNavbarComponent } from '../../main-navbar/main-navbar.component';
 
 
 export interface PointsSummary {
@@ -28,55 +29,55 @@ export type PlayerRow = [
   number   // Total points (can be a float)
 ];
 
-@Component({ 
+@Component({
   selector: 'app-points-summary',
   standalone: true,
-  imports: [CommonModule, NavbarComponent, PointsDetailsComponent],
+  imports: [CommonModule, NavbarComponent, PointsDetailsComponent, MainNavbarComponent],
   templateUrl: './points-summary.component.html',
   styleUrl: './points-summary.component.css'
 })
 export class PointsSummaryComponent {
 
   game: Game | null = null;
-  user: Ranking | null = null; 
-  userIcon:string = 'src/assets/user_icon.jpg'; 
-  pointsSummary:PointsSummary | null = null;
-  selectedTab: string = SUMMARY_TAB; 
+  user: Ranking | null = null;
+  userIcon: string = 'src/assets/user_icon.jpg';
+  pointsSummary: PointsSummary | null = null;
+  selectedTab: string = SUMMARY_TAB;
 
   constructor(private fantasyRankingService: FantasyRankingService,
     private router: Router) { }
 
-  ngOnInit() { 
-    this.getGameInfo(); 
-    this.getUserInfo(); 
+  ngOnInit() {
+    this.getGameInfo();
+    this.getUserInfo();
     this.getPointsSummary();
 
   }
 
   getGameInfo() {
     this.game = sessionStorage.getItem(SELECTED_GAME) ? JSON.parse(sessionStorage[SELECTED_GAME]!) : null;
-  } 
+  }
 
   getUserInfo() {
     this.user = sessionStorage.getItem(SELECTED_USER) ? JSON.parse(sessionStorage[SELECTED_USER]!) : null;
-  } 
+  }
 
   onTabSelected(tab: string) {
     this.selectedTab = tab; // Update the selected tab 
-    if(this.selectedTab == SUMMARY_TAB){ 
+    if (this.selectedTab == SUMMARY_TAB) {
       this.getPointsSummary();
     }
   }
 
-  getPointsSummary(){ 
+  getPointsSummary() {
     this.fantasyRankingService.getPointsSummary(this.game!.id, this.user!.id, this.user!.name).subscribe(response => {
       if (response) {
         this.pointsSummary = response;
       }
-    }); 
-  } 
+    });
+  }
 
-  goBack(){ 
+  goBack() {
     this.router.navigate([`/fantasy-ranking`]);
   }
 
