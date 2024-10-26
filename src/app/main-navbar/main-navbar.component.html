@@ -1,0 +1,23 @@
+<link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+<nav class="navbar">
+    <div class="container">
+        <ul class="nav-links"> 
+            <li><a routerLink="/fantasy-ranking" routerLinkActive="active">Rankings</a></li>
+            <li><a routerLink="/home" routerLinkActive="active">Join League</a></li> 
+            <li><a routerLink="/fantasy-ranking" routerLinkActive="active">View Squad</a></li>
+
+            <li class="dropdown" *ngIf="isLoggedIn(); else guestLinks">
+                <button class="dropbtn">Account ▾</button>
+                <ul class="dropdown-content">
+                    <li><a routerLink="/change-username">Change Username</a></li>
+                    <li><a routerLink="/change-password">Change Password</a></li>
+                    <li><a (click)="logout()">Logout</a></li>
+                </ul>
+            </li>
+
+            <ng-template #guestLinks>
+                <li><a routerLink="/login" routerLinkActive="active">Login</a></li>
+            </ng-template>
+        </ul>
+    </div>
+</nav>

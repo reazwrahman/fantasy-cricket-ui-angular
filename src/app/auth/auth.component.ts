@@ -2,7 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, NgModule } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; 
+import { MainNavbarComponent } from '../main-navbar/main-navbar.component';
 
 // manually  npm-installed modules
 import Swal from 'sweetalert2';
@@ -17,7 +18,8 @@ import { AuthService } from '../services/auth.service';
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule, 
+    MainNavbarComponent
   ],
   templateUrl: './auth.component.html',
   styleUrl: './auth.component.css'

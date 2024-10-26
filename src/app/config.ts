@@ -20,7 +20,6 @@ const apiConfig: ApiConfig = {
 };
 
 
-// Function to get the URL and replace {matchId} with the actual value
 export const getApiUrl = (endpoint: string, params: { [key: string]: any } = {}): string => {
     let url: string = apiConfig[endpoint]; 
     if(ENV == 'LOCAL'){ 
