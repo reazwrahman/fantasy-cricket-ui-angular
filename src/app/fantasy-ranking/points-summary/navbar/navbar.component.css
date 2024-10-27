@@ -79,13 +79,14 @@
     .navbar ul {
         flex-direction: column; /* Stack items vertically */
         width: 100%; /* Full width for mobile */
-        padding: 10px 0; /* Adjust padding for mobile */
+        padding: 10px 0; /* Adjust padding for mobile */ 
+        gap: 5px;
     }
 
     .navbar li {
         font-size: 1.2rem; /* Smaller font size for mobile */
         padding: 10px; /* Padding adjustments */
         text-align: center; /* Center text on mobile */
-        width: 100%; /* Make items full width on mobile */
-    }
+        width: 90%; /* Make items full width on mobile */
+    } 
 }

@@ -4,8 +4,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #131a24;
-    ;
+    background: #131a24; 
+    border-radius: 20px;
 }
 
 /* Login container styling */

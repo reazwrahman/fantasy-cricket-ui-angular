@@ -1,9 +1,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
-<nav class="navbar">
-    <div class="container">
-        <ul class="nav-links"> 
+<div class="container">
+    <nav class="navbar">
+
+        <ul class="nav-links">
             <li (click)="routeRanking()">Rankings</li>
-            <li (click)="routeRanking()">Join League</li> 
+            <li (click)="routeRanking()">Join League</li>
             <li (click)="routeRanking()">View Squad</li>
 
             <li class="dropdown" *ngIf="isLoggedIn(); else guestLinks"> Account ▾
@@ -18,5 +19,5 @@
                 <li (click)="routeLogin()">Login</li>
             </ng-template>
         </ul>
-    </div>
-</nav>
+    </nav>
+</div>

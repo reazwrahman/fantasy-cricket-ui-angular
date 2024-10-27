@@ -1,26 +1,33 @@
 /* Navbar Container */
-.navbar-container {
+.container {
     display: flex;
-    justify-content: center;
-    margin: 20px 0;
+    justify-content: center; /* Centers the navbar horizontally */
+    margin: 10px 10px;
 }
 
 /* Navbar Style */
 .navbar {
-    /* background: linear-gradient(to bottom, #fbfafa, #013fa3); */
     background: rgb(215, 215, 215);
     color: #131a24;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 5px 5px;
-    /* Padding for spacing */
+    padding: 10px;
     border-radius: 12px;
+    width: 80%;
+    display: flex;
+    justify-content: center; /* Center items horizontally */
+    align-items: center; /* Center items vertically */
+    gap: 20px; /* Adds space between items */
+    list-style: none; /* Remove bullet points from the list */
+    margin: 0;  
 }
+
 
 /* Navbar Items */
 .navbar ul {
     list-style: none;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between; 
+    gap: 50px;
     padding: 0;
     margin: 0;
     color: #ffffff;
@@ -29,7 +36,7 @@
 /* Navbar Item Styles */
 .navbar li {
     font-family: 'Russo One', sans-serif;
-    font-size: 1.2rem;
+    font-size: 1.0rem;
     color: #ffffff;
     cursor: pointer;
     position: relative;
@@ -52,7 +59,7 @@
 /* Dropdown Holder (Account) - Same Look as Tabs */
 .navbar li.dropdown {
     font-family: 'Russo One', sans-serif;
-    font-size: 1.2rem;
+    font-size: 1.0rem;
     color: #ffffff;
     cursor: pointer;
     position: relative;
@@ -137,13 +144,14 @@
     }
 
     .navbar ul {
-        flex-direction: column;
-        width: 100%;
-        padding: 10px 0;
+        flex-direction: column; /* Stack items vertically */
+        width: 90%; /* Full width for mobile */
+        padding: 10px 0; /* Adjust padding for mobile */ 
+        gap: 5px;
     }
 
     .navbar li {
-        font-size: 1.2rem;
+        font-size: 1.0rem;
         padding: 10px;
         text-align: center;
         width: 100%;
@@ -153,5 +161,6 @@
         position: static;
         box-shadow: none;
         margin: 0;
-    }
+    } 
+    
 }
