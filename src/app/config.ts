@@ -18,7 +18,7 @@ const apiConfig: ApiConfig = {
     register: '/auth/register', 
     confirm: '/auth/confirm',
     reset: '/auth/reset', 
-    resetWithToken: 'auth/reset/{token}'
+    resetWithToken: 'auth/resetWithToken'
 };
 
 

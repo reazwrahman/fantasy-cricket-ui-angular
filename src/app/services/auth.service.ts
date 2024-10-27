@@ -71,8 +71,8 @@ export class AuthService {
   }
 
   resetPassword(token:string, newPassword:string){  
-    const apiUrl = getApiUrl('resetWithToken', {token});
-    const body = { new_password: newPassword }; 
+    const apiUrl = getApiUrl('resetWithToken');
+    const body = { new_password: newPassword, token: token }; 
 
     return this.http.post<any>(apiUrl, body);
   }
