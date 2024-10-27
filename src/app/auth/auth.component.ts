@@ -99,5 +99,9 @@ export class LoginComponent {
 
   navigateToRegister() {
     this.router.navigate(['auth/register']);
+  } 
+
+  resetPassword(){ 
+    this.router.navigate(['auth/reset']);
   }
 }

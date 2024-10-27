@@ -58,10 +58,27 @@ export class AuthService {
       'Authorization': token
     });
 
-    const body = { email, user_id: userId }; // Include user_id in the body
+    const body = { email, user_id: userId }; 
 
     return this.http.post<any>(apiUrl, body, { headers });
   }
+
+  sendResetInstruction(email: string) {
+    const apiUrl = getApiUrl('reset');
+    const body = { email: email }; 
+
+    return this.http.post<any>(apiUrl, body);
+  }
+
+  resetPassword(token:string, newPassword:string){  
+    const apiUrl = getApiUrl('resetWithToken', {token});
+    const body = { new_password: newPassword }; 
+
+    return this.http.post<any>(apiUrl, body);
+  }
+
+
+  // ------------- INTERNAL (NO API CALL REQUIRED FOR THE METHODS BELOW) ------//
 
   isUserLoggedIn(): boolean {
     const token = this.cookieService.get(JWT_KEY);
@@ -90,11 +107,11 @@ export class AuthService {
     if (storedUserInfo) {
       const userInfo = JSON.parse(storedUserInfo);
       return Boolean(userInfo.confirmed);
-    } 
+    }
     return false;
   }
 
-  logout() { 
+  logout() {
     this.router.navigate(['auth/login']);
     localStorage.removeItem(USER_INFO);
     sessionStorage.clear();
