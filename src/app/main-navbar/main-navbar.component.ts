@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 
 // local imports
-import { AuthService } from '../services/auth.service';
+import { UserInfo, AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-main-navbar',
@@ -14,20 +14,29 @@ import { AuthService } from '../services/auth.service';
   templateUrl: './main-navbar.component.html',
   styleUrl: './main-navbar.component.css'
 })
-export class MainNavbarComponent{
+export class MainNavbarComponent {
 
+  username: string = "";
 
   constructor(private authService: AuthService,
-    private router: Router, private cookieService: CookieService) { } 
+    private router: Router, private cookieService: CookieService) { }
 
-  ngOnInit(){ 
+  ngOnInit() {
     this.onInitAction();
-  } 
+  }
 
   // route to unconfirmed if applicable
-  onInitAction(){ 
-    if (this.authService.isUserLoggedIn() && !this.authService.isUserConfirmed()){ 
-      this.router.navigate(['auth/unconfirmed']);
+  onInitAction() {
+    if (this.authService.isUserLoggedIn()) {
+
+      let userInfo: UserInfo | null = this.authService.getUserInfo(); 
+      if (userInfo){ 
+        this.username = userInfo.username;
+      }
+
+      if (!this.authService.isUserConfirmed()) {
+        this.router.navigate(['auth/unconfirmed']);
+      }
     }
   }
 
@@ -47,6 +56,6 @@ export class MainNavbarComponent{
 
   routeRanking() {
     this.router.navigate(['/fantasy-ranking']);
-  }   
+  }
 
 }

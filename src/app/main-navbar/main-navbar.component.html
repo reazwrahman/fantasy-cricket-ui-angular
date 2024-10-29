@@ -7,7 +7,7 @@
             <li (click)="routeRanking()">Join League</li>
             <li (click)="routeRanking()">View Squad</li>
 
-            <li class="dropdown" *ngIf="isLoggedIn(); else guestLinks"> Account ▾
+            <li class="dropdown" *ngIf="isLoggedIn(); else guestLinks"> Welcome {{username}} ▾
                 <ul class="dropdown-content">
                     <li><a routerLink="/change-username">Change Username</a></li>
                     <li><a routerLink="/change-password">Change Password</a></li>

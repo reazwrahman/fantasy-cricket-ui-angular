@@ -84,7 +84,7 @@ export class UnconfirmedComponent implements OnInit {
       title: 'Something Went Wrong',
       text: "Please Login Again"
     })
-    //this.router.navigate([`auth/login`]);
+    this.router.navigate([`auth/login`]);
 
   }
 
