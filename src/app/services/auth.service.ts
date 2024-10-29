@@ -12,6 +12,12 @@ import { getApiUrl } from '../config'
 const JWT_KEY = "authToken";
 const USER_INFO = "userInfo";
 
+export interface UserInfo {
+  username: string;
+  email: string; 
+  userId: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -58,21 +64,21 @@ export class AuthService {
       'Authorization': token
     });
 
-    const body = { email, user_id: userId }; 
+    const body = { email, user_id: userId };
 
     return this.http.post<any>(apiUrl, body, { headers });
   }
 
   sendResetInstruction(email: string) {
     const apiUrl = getApiUrl('reset');
-    const body = { email: email }; 
+    const body = { email: email };
 
     return this.http.post<any>(apiUrl, body);
   }
 
-  resetPassword(token:string, newPassword:string){  
+  resetPassword(token: string, newPassword: string) {
     const apiUrl = getApiUrl('resetWithToken');
-    const body = { new_password: newPassword, token: token }; 
+    const body = { new_password: newPassword, token: token };
 
     return this.http.post<any>(apiUrl, body);
   }
@@ -120,6 +126,15 @@ export class AuthService {
 
   private deleteCookie(name: string): void {
     document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/`;
+  }
+
+  getUserInfo():UserInfo | null {
+    const storedUserInfo = localStorage.getItem("userInfo");
+    if (storedUserInfo) {
+      let userInfo:UserInfo = JSON.parse(storedUserInfo); 
+      return userInfo;
+    } 
+    return null;
   }
 
 }// end of class

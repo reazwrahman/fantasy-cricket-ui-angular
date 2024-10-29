@@ -11,6 +11,8 @@ import { RegistrationComponent } from './auth/registration/registration.componen
 import { UnconfirmedComponent } from './auth/unconfirmed/unconfirmed.component';
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
 
+import { ViewSquadComponent } from './view-squad/view-squad.component';
+
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'navbar', component: MainNavbarComponent },
@@ -23,6 +25,8 @@ export const routes: Routes = [
   { path: 'auth/register', component: RegistrationComponent },
   { path: 'auth/unconfirmed', component: UnconfirmedComponent },
   { path: 'auth/reset', component: ResetPasswordComponent },
+
+  { path: 'view-squad', component: ViewSquadComponent},
 
   { path: 'server-error', component: ErrorComponentComponent },
   { path: '**', component: ErrorComponentComponent }

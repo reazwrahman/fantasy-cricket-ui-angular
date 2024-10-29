@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { AuthService } from '../../services/auth.service'; 
+import { UserInfo, AuthService } from '../../services/auth.service';
 import { MainNavbarComponent } from '../../main-navbar/main-navbar.component';
 
-@Component({ 
+@Component({
   standalone: true,
-  selector: 'unconfirmed-account', 
+  selector: 'unconfirmed-account',
   imports: [MainNavbarComponent],
   templateUrl: './unconfirmed.component.html',
   styleUrls: ['./unconfirmed.component.css']
@@ -25,19 +25,18 @@ export class UnconfirmedComponent implements OnInit {
   }
 
   getUserInfo() {
-    const storedUserInfo = localStorage.getItem("userInfo");
+    const storedUserInfo:UserInfo | null = this.authService.getUserInfo();
     if (storedUserInfo) {
-      const userInfo = JSON.parse(storedUserInfo);
-      this.username = userInfo.username;
-      this.email = userInfo.email;
-      this.userId = userInfo.userId;
+      this.username = storedUserInfo.username;
+      this.email = storedUserInfo.email;
+      this.userId = storedUserInfo.userId; 
     }
   }
 
   resendConfirmation(): void {
     if (!this.authService.isUserLoggedIn()) {
       this.checkLoginStatus();
-    } else { 
+    } else {
       this.callApi();
     }
   }
@@ -57,7 +56,8 @@ export class UnconfirmedComponent implements OnInit {
     }
   }
 
-  callApi() {
+  callApi() { 
+    console.log(this.userId);
     this.authService.confirmUser(this.email, this.userId).subscribe(
       (response) => {
         this.handleSuccess(response);
@@ -67,7 +67,7 @@ export class UnconfirmedComponent implements OnInit {
       });
   }
 
-  handleSuccess(response: any) { 
+  handleSuccess(response: any) {
     Swal.fire({
       icon: 'success',
       title: 'Check Email',
@@ -78,13 +78,13 @@ export class UnconfirmedComponent implements OnInit {
 
   }
 
-  handleError(error: any) { 
+  handleError(error: any) {
     Swal.fire({
       icon: 'error',
       title: 'Something Went Wrong',
       text: "Please Login Again"
     })
-    this.router.navigate([`auth/login`]);
+    //this.router.navigate([`auth/login`]);
 
   }
 
