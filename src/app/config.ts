@@ -13,6 +13,9 @@ const apiConfig: ApiConfig = {
     pointsSummary: '/fantasyContest/displayFullSquadSummary?match_id={matchId}&user_id={userId}&user_name={userName}',
     pointsDetails:'/fantasyContest/displayPointsBreakdown?match_id={matchId}&user_id={userId}&user_name={userName}',
 
+    // join league 
+    viewSquad: '/squadSelection/viewMySquad',
+
     // Authentication endpoints 
     login: '/auth/login', 
     register: '/auth/register', 

@@ -47,4 +47,9 @@ export class FantasyRankingService {
     const apiUrl = getApiUrl('pointsDetails', { matchId, userId, userName });
     return this.getRequest(apiUrl);
   }
+
+  getSquad(token:string, email:string, userId:string, matchId:string){  
+    const apiUrl = getApiUrl('viewSquad', { email, userId, matchId });
+    return this.getRequest(apiUrl);
+  }
 }

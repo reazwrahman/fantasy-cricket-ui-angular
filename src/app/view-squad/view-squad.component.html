@@ -1,15 +1,16 @@
-<!-- <div class="dropdown-container">
+<app-main-navbar/> 
+<div class="dropdown-container">
     
-    <label for="game-select">Select Active Game:</label>
+    <label for="game-select">Select a Game:</label>
     <select id="game-select" [(ngModel)]="selectedGame">
-      <option *ngFor="let game of gamesList" [value]="game">{{ game }}</option>
+      <option *ngFor="let game of activeGames" [value]="game">{{ game.title }}</option>
     </select>
   
     
     <button (click)="onSelectGame()">Select</button>
   
     
-    <div *ngIf="showGameDetails" class="info-container">
+    <!-- <div *ngIf="showGameDetails" class="info-container">
       <h3>Selected Game: {{ selectedGame }}</h3>
       <p><strong>Captain:</strong> {{ captain }}</p>
       <p><strong>Vice-Captain:</strong> {{ viceCaptain }}</p>

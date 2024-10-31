@@ -146,7 +146,7 @@
     .navbar ul {
         flex-direction: column; /* Stack items vertically */
         width: 90%; /* Full width for mobile */
-        padding: 10px 0; /* Adjust padding for mobile */ 
+        padding: 0px 0; /* Adjust padding for mobile */ 
         gap: 5px;
     }
 
@@ -160,7 +160,12 @@
     .navbar li.dropdown ul {
         position: static;
         box-shadow: none;
-        margin: 0;
+        margin: 0; 
+        width: 200px;
+    }
+
+    .navbar li.dropdown ul li {
+        width: 150px; 
     } 
     
 }

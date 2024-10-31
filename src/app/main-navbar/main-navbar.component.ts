@@ -29,8 +29,8 @@ export class MainNavbarComponent {
   onInitAction() {
     if (this.authService.isUserLoggedIn()) {
 
-      let userInfo: UserInfo | null = this.authService.getUserInfo(); 
-      if (userInfo){ 
+      let userInfo: UserInfo | null = this.authService.getUserInfo();
+      if (userInfo) {
         this.username = userInfo.username;
       }
 
@@ -56,6 +56,10 @@ export class MainNavbarComponent {
 
   routeRanking() {
     this.router.navigate(['/fantasy-ranking']);
+  }
+
+  routeViewSquad() {
+    this.router.navigate(['/view-squad']);
   }
 
 }
