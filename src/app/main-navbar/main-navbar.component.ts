@@ -62,4 +62,12 @@ export class MainNavbarComponent {
     this.router.navigate(['/view-squad']);
   }
 
+  routeChangeUsername() {
+    this.router.navigate(['auth/changeUsername']);
+  }
+
+  routeChangePassword() {
+    this.router.navigate(['auth/changePassword']);
+  }
+
 }

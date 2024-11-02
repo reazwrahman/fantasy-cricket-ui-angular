@@ -9,8 +9,8 @@
 
             <li class="dropdown" *ngIf="isLoggedIn(); else guestLinks"> Welcome {{username}} ▾
                 <ul class="dropdown-content">
-                    <li><a routerLink="/change-username">Change Username</a></li>
-                    <li><a routerLink="/change-password">Change Password</a></li>
+                    <li (click)="routeChangeUsername()">Change Username</li> 
+                    <li (click)="routeChangePassword()">Change Password</li> 
                     <li><a (click)="logout()">Logout</a></li>
                 </ul>
             </li>

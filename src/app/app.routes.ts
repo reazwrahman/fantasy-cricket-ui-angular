@@ -10,6 +10,8 @@ import { LoginComponent } from './auth/auth.component';
 import { RegistrationComponent } from './auth/registration/registration.component';
 import { UnconfirmedComponent } from './auth/unconfirmed/unconfirmed.component';
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
+import { ChangePasswordComponent } from './auth/change-password/change-password.component';
+import { ChangeUsernameComponent } from './auth/change-username/change-username.component';
 
 import { ViewSquadComponent } from './view-squad/view-squad.component';
 
@@ -25,6 +27,8 @@ export const routes: Routes = [
   { path: 'auth/register', component: RegistrationComponent },
   { path: 'auth/unconfirmed', component: UnconfirmedComponent },
   { path: 'auth/reset', component: ResetPasswordComponent },
+  { path: 'auth/changePassword', component: ChangePasswordComponent}, 
+  { path: 'auth/changeUsername', component: ChangeUsernameComponent},
 
   { path: 'view-squad', component: ViewSquadComponent},
 

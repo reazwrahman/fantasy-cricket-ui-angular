@@ -14,7 +14,7 @@ const USER_INFO = "userInfo";
 
 export interface UserInfo {
   username: string;
-  email: string; 
+  email: string;
   userId: string;
 }
 
@@ -83,13 +83,50 @@ export class AuthService {
     return this.http.post<any>(apiUrl, body);
   }
 
+  changePassword(oldPassword: string, newPassword: string) {
+    const token = this.cookieService.get(JWT_KEY);
+    const apiUrl = getApiUrl('changePassword');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': token
+    });
+
+    let storedUserInfo: UserInfo | null = this.getUserInfo();
+
+    const body = {
+      email: storedUserInfo!.email, user_id: storedUserInfo!.userId,
+      old_password: oldPassword, new_password: newPassword
+    };
+
+    return this.http.post<any>(apiUrl, body, { headers });
+  }
+
+
+  changeUsername(password: string, newUsername: string) {
+    const token = this.cookieService.get(JWT_KEY);
+    const apiUrl = getApiUrl('changeUsername');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': token
+    });
+
+    let storedUserInfo: UserInfo | null = this.getUserInfo();
+
+    const body = {
+      email: storedUserInfo!.email, user_id: storedUserInfo!.userId,
+      password: password, new_username: newUsername
+    };
+
+    return this.http.post<any>(apiUrl, body, { headers });
+  }
+
 
   // ------------- INTERNAL (NO API CALL REQUIRED FOR THE METHODS BELOW) ------//
 
-  getJwt():string{ 
+  getJwt(): string {
     return this.cookieService.get(JWT_KEY);
   }
-  
+
   isUserLoggedIn(): boolean {
     const token = this.getJwt();
 
@@ -132,12 +169,12 @@ export class AuthService {
     document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/`;
   }
 
-  getUserInfo():UserInfo | null {
+  getUserInfo(): UserInfo | null {
     const storedUserInfo = localStorage.getItem("userInfo");
     if (storedUserInfo) {
-      let userInfo:UserInfo = JSON.parse(storedUserInfo); 
+      let userInfo: UserInfo = JSON.parse(storedUserInfo);
       return userInfo;
-    } 
+    }
     return null;
   }
 

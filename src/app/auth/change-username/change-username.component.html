@@ -1,0 +1,44 @@
+<app-main-navbar />
+
+<div class="page-container">
+    <div class="reset-container">
+            <form #passwordForm="ngForm" (ngSubmit)="changeUsername()">
+                <h2>Change Password</h2>
+
+                <div class="form-group">
+                    <label for="oldPassword">Password:</label>
+                    <input type="password" id="password" name="password" required [(ngModel)]="password"
+                        #passwordField="ngModel" placeholder="Enter password" class="form-control" />
+
+                    <small *ngIf="passwordField.invalid && passwordField.touched" class="error">
+                        password is required.
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <label for="newUsername">New Username:</label>
+                    <input type="username" id="newUsername" name="newUsername" required [(ngModel)]="newUsername"
+                        #newUsernameField="ngModel" placeholder="Enter new username" class="form-control" />
+
+                    <small *ngIf="newUsernameField.invalid && newUsernameField.touched" class="error">
+                        New username is required.
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmUsername">Confirm Username:</label>
+                    <input type="username" id="confirmUsername" name="confirmUsername"
+                        [(ngModel)]="confirmUsername" #confirmUsernameField="ngModel" placeholder="Confirm new username"
+                        class="form-control" />
+
+                    <small *ngIf="confirmUsernameField.invalid && confirmUsernameField.touched " class="error">
+                        Confirm username is required
+                    </small>
+                </div>
+
+                <button type="submit" [disabled]="passwordForm.invalid" class="btn">
+                    Change Username
+                </button>
+            </form>
+    </div>
+</div>

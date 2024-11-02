@@ -1,7 +1,7 @@
 .page-container {
     /* min-height: 40vh; */
     display: flex;
-    padding: 50px; 
+    padding: 50px 0px; 
     align-items: center;
     justify-content: center;
     flex-direction: column;

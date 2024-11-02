@@ -1,6 +1,6 @@
 const ENV: string = 'LOCAL'; // 'LOCAL' or 'REMOTE' based on the environment
 
-const LOCAL_ENDPOINT = 'http://0.0.0.0:5001/'
+const LOCAL_ENDPOINT = 'http://0.0.0.0:5001'
 const REMOTE_ENDPOINT = 'https://pe1nvrpbz4.execute-api.us-east-1.amazonaws.com/dev'
 
 type ApiConfig = {
@@ -21,7 +21,9 @@ const apiConfig: ApiConfig = {
     register: '/auth/register', 
     confirm: '/auth/confirm',
     reset: '/auth/reset', 
-    resetWithToken: '/auth/resetWithToken'
+    resetWithToken: '/auth/resetWithToken',
+    changeUsername: '/auth/changeUsername', 
+    changePassword: '/auth/changePassword'
 };
 
 
