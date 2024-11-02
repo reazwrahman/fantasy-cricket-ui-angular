@@ -40,7 +40,7 @@ export class ViewSquadComponent {
   selectedTitle: string = "";
 
   squadResponse: SquadResponse | null = null;
-  squadFound: boolean = false;
+  squadFound: boolean = true;
 
   constructor(private fantasyRankingService: FantasyRankingService,
     private router: Router, private authService: AuthService) { }
