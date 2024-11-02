@@ -86,8 +86,12 @@ export class AuthService {
 
   // ------------- INTERNAL (NO API CALL REQUIRED FOR THE METHODS BELOW) ------//
 
+  getJwt():string{ 
+    return this.cookieService.get(JWT_KEY);
+  }
+  
   isUserLoggedIn(): boolean {
-    const token = this.cookieService.get(JWT_KEY);
+    const token = this.getJwt();
 
     if (!token) {
       return false;  // Token not found

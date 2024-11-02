@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { of, Observable } from 'rxjs'; 
+import { of, Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -48,8 +48,17 @@ export class FantasyRankingService {
     return this.getRequest(apiUrl);
   }
 
-  getSquad(token:string, email:string, userId:string, matchId:string){  
-    const apiUrl = getApiUrl('viewSquad', { email, userId, matchId });
-    return this.getRequest(apiUrl);
+  // view my squad
+  getSquad(token: string, email: string, userId: string, matchId: string): Observable<any> {
+    const apiUrl = getApiUrl('viewSquad');
+    const payload = {
+      email: email,
+      user_id: userId,
+      match_id: matchId
+    };
+
+    const headers = { 'Authorization': token };
+
+    return this.http.post(apiUrl, payload, { headers });
   }
 }

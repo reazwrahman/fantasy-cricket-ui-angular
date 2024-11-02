@@ -111,7 +111,6 @@
 
 /* Hover Effects */
 .navbar li:hover {
-    background-color: #333232;
     color: #00cc80;
     /* Change text color on hover */
     padding-bottom: 5px;

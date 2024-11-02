@@ -1,25 +1,33 @@
-<app-main-navbar/> 
-<div class="dropdown-container">
-    
-    <label for="game-select">Select a Game:</label>
-    <select id="game-select" [(ngModel)]="selectedGame">
-      <option *ngFor="let game of activeGames" [value]="game">{{ game.title }}</option>
-    </select>
-  
-    
-    <button (click)="onSelectGame()">Select</button>
-  
-    
-    <!-- <div *ngIf="showGameDetails" class="info-container">
-      <h3>Selected Game: {{ selectedGame }}</h3>
-      <p><strong>Captain:</strong> {{ captain }}</p>
-      <p><strong>Vice-Captain:</strong> {{ viceCaptain }}</p>
-      <p><strong>Prediction:</strong> {{ prediction }}</p>
-  
-      
-      <ul>
-        <li *ngFor="let item of gameInfoList">{{ item }}</li>
-      </ul>
+<app-main-navbar />
+<div class="page-container">
+    <label for="game-select" class="dropdown-label">Select a Game:</label>
+    <div class="dropdown-wrapper">
+        <select id="game-select" [(ngModel)]="selectedGame">
+            <option *ngFor="let game of activeGames" [ngValue]="game">{{ game.title }} </option>
+        </select>
+        <span class="dropdown-arrow">&#9662;</span>
     </div>
-  </div>
-   -->
+    <br>
+    <button class="select-button" (click)="onSelectGame()">View My Squad</button>
+
+
+    <div *ngIf="squadFound && squadResponse" class="info-container">
+        <h3>{{ selectedTitle }}</h3>
+        <ol class="numbered-list">
+            <li *ngFor="let item of squadResponse.full_squad">{{ item }}</li>
+        </ol>
+
+        <div class="additional-info">
+            <p><strong>Captain:</strong> {{ squadResponse.captain }}</p>
+            <p><strong>Vice-Captain:</strong> {{ squadResponse.vice_captain }}</p>
+            <p><strong>Prediction:</strong> {{ squadResponse.result_prediction }}</p>
+
+        </div>
+    </div> 
+
+    <div class="additional-info" *ngIf="!squadFound">
+        <p> You don't have a squad for this game. Please join the fantasy league to submit one. </p>
+
+    </div>
+
+</div>
