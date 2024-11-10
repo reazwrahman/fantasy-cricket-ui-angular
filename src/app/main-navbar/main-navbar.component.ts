@@ -50,8 +50,12 @@ export class MainNavbarComponent {
     this.authService.logout();
   }
 
-  routeLogin() {
+  routeSignIn() {
     this.router.navigate(['auth/login']);
+  }
+
+  routeRegister() {
+    this.router.navigate(['auth/register']);
   }
 
   routeRanking() {

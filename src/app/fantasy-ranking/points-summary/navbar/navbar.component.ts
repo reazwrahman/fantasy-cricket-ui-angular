@@ -13,7 +13,7 @@ export const FIELDING_TAB = "fielding";
     styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
-    selectedTab: string = 'summary'; // Default selected tab
+    selectedTab: string = SUMMARY_TAB; // Default selected tab
 
     @Output() tabSelected: EventEmitter<string> = new EventEmitter<string>();
 

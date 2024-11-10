@@ -15,8 +15,14 @@
                 </ul>
             </li>
 
-            <ng-template #guestLinks>
-                <li (click)="routeLogin()">Login</li>
+            <ng-template #guestLinks> 
+                <li class="dropdown"> Login ▾
+                    <ul class="dropdown-content">  
+                        <li (click)="routeSignIn()">Sign In</li> 
+                        <li (click)="routeRegister()">Register</li>  
+                    </ul> 
+                </li>
+
             </ng-template>
         </ul>
     </nav>
