@@ -1,0 +1,12 @@
+<link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+<div class="navbar-container">
+    <nav class="navbar">
+        <ul>
+            <li (click)="selectTab('batters')" [class.active]="selectedTab === 'batters'">Batters</li>
+            <li (click)="selectTab('bowlers')" [class.active]="selectedTab === 'bowlers'">Bowlers</li>
+            <li (click)="selectTab('bonus')" [class.active]="selectedTab === 'bonus'">Bonus Points</li>
+            <li (click)="selectTab('submit')" [class.active]="selectedTab === 'submit'">Finalize Squad</li>
+        </ul>
+    </nav>
+</div>
+

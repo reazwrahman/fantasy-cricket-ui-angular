@@ -1,0 +1,23 @@
+<app-main-navbar /> 
+
+
+<div class="page-container">
+    <div class="rule-reminder">
+        <h2> Review the Rules </h2>
+        <p> Base points: for every run 1 point, for every wicket 20 points
+            & for every fielding dismissal 10 points are added </p>
+        <p> Milestone points: for every 25 runs 10 milestone points &
+            for every wicket 10 milestone points are added</p>
+    </div>
+<br>
+
+    <label for="game-select" class="dropdown-label">Select a Game:</label>
+    <div class="dropdown-wrapper">
+        <select id="game-select" [(ngModel)]="selectedGame">
+            <option *ngFor="let game of activeGames" [ngValue]="game">{{ game.title }} </option>
+        </select>
+        <span class="dropdown-arrow">&#9662;</span>
+    </div>
+    <br>
+    <button class="select-button" (click)="onSelectGame()">Select</button> 
+</div>

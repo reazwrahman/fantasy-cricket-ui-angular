@@ -1,0 +1,112 @@
+.main-container {
+    /*max-width: 1000px; /* Adjust as needed */ 
+    width: 100%; 
+    height: auto;
+    margin: 0 auto; /* Centering the container */
+    /*padding: 10px; /* Add padding around the main content */
+    background-color: #131a24;/* Background color to unify the look */
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Soft shadow */
+}
+
+.page-title { 
+    text-align: center; /* Center the title */ 
+    width: 100%;
+    color: #ffffff; /* White color for contrast */
+    margin-bottom: 20px; /* Space between title and carousel */
+    font-size: 36px; /* Larger font size for prominence */
+    font-family: 'Arial Black', sans-serif; /* Bold font family */
+    text-transform: uppercase; /* Uppercase letters for emphasis */
+    letter-spacing: 2px; /* Space between letters for a more dynamic look */
+    background: linear-gradient(135deg, #e2f7ef, #e2f6f1); /* Match your theme with a gradient */
+    -webkit-background-clip: text; /* Clip the background to the text */
+    -webkit-text-fill-color: transparent; /* Fill the text with the gradient */
+    text-shadow: 2px 2px 4px rgba(170, 198, 254, 0.7), 0 0 10px rgba(255, 255, 255, 0.3); /* Soft shadow for depth */
+    padding: 10px; /* Padding around the text */
+    border-radius: 8px; /* Rounded corners */
+    display: inline-block; /* Make the title an inline-block for padding */
+}
+
+/* ----------------style for display cards------------------- */
+/* Carousel container to center it properly */
+.carousel-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Full width */
+    overflow: hidden; /* Hide any overflow */
+    padding: 10px; /* Padding around the container */
+    box-sizing: border-box; /* Include padding in the layout */
+}
+
+/* Carousel styles */
+.carousel {
+    display: flex;
+    gap: 15px; /* Space between items */
+    overflow-x: auto; /* Allow horizontal scrolling */
+    padding: 10px; /* Inner padding */
+    scroll-snap-type: x mandatory; /* Enable snap scrolling */
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
+}
+
+
+
+/* Prevent the first item from being cut off */
+.carousel-item {
+    flex: 0 0 auto; /* Ensure items don’t shrink */
+    max-width: 300px; /* width */
+    max-height: 400px; /*height */ 
+    background: linear-gradient(135deg, #202734, #293b5b);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Add shadow */
+    scroll-snap-align: start; /* Align items correctly on scroll */ 
+    text-align: center; /* Center text alignment */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    color: #ffffff; /* Default white text */
+    font-family: 'Arial', sans-serif; /* Clean, modern font */
+}
+
+.carousel-item img {
+    width: 100%; /* Make the image fill the width of the tile */
+    max-height: 200px; /* Maintain the aspect ratio of the image */
+    border-radius: 8px; /* Slight rounding for image corners */
+    object-fit: cover; /* Cover the entire area while maintaining aspect ratio */
+}
+
+.carousel-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(135deg, #3a6073, #1d4350);
+}
+
+.carousel-info a {
+    display: inline-block; /* Keeps the link as an inline block for better control */
+    margin-top: 8px; /* Space above the link */
+    margin-bottom: 12px; /* Space below the link */
+    color: #3498db; /* Link color */
+    text-decoration: none; /* Removes underline */
+    font-size: 16px; /* Font size */
+    font-weight: bold; /* Bold text */
+    transition: color 0.3s ease; /* Smooth color transition on hover */
+}
+
+.carousel-info a:hover {
+    color: #2980b9; /* Darker shade on hover */
+    text-decoration: underline; /* Underline on hover for indication */
+}
+
+.carousel-info a:active {
+    color: #1f4f7c; /* Darker shade when the link is clicked */
+}
+
+/* Make carousel responsive */
+@media (max-width: 768px) {
+    .carousel {
+        padding: 0 10px; 
+    } 
+    .carousel-item{ 
+        max-width: 150px;
+    }
+}
+/* ---------------------------------------------------- */ 

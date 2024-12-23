@@ -1,0 +1,18 @@
+<p>test-squad-selection works!</p> 
+
+<div *ngFor="let item of selections; let i = index">
+    <label [attr.for]="'checkbox-' + i" style="cursor: pointer;">
+      <input 
+        id="checkbox-{{i}}" 
+        type="checkbox" 
+        [checked]="item.selected"
+        (change)="onSelectionChange(item, $event)" 
+        [disabled]="selectionCounter >= 3 && !item.selected"
+      />
+      {{ item.name }}
+    </label>
+  </div>
+  <hr />
+  <p>Selected Players: {{ getSelectedItems()|json }}</p> 
+  <p>Players picked: {{ selectionCounter }}</p> 
+  <p>Slots left: {{ 3 - selectionCounter }}</p>

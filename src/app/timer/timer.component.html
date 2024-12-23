@@ -1,0 +1,13 @@
+<div class="timer-container">
+  <div class="timer">
+    <h2>Time Remaining:</h2>
+    <div class="time-display">
+      <span [style.color]="textColor">{{ timeRemaining.days }} days</span>
+      <span [style.color]="textColor">{{ timeRemaining.hours }} hours</span>
+      <span [style.color]="textColor">{{ timeRemaining.minutes }} minutes</span>
+      <span [style.color]="textColor">{{ timeRemaining.seconds }} seconds</span>
+    </div>
+    <br>
+    <p> {{closedMessage}} </p>
+  </div>
+</div>

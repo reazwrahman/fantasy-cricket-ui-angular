@@ -60,6 +60,10 @@ export class MainNavbarComponent {
 
   routeRanking() {
     this.router.navigate(['/fantasy-ranking']);
+  } 
+
+  routeJoinLeague(){ 
+    this.router.navigate(['/squad-selection']);
   }
 
   routeViewSquad() {
@@ -72,6 +76,6 @@ export class MainNavbarComponent {
 
   routeChangePassword() {
     this.router.navigate(['auth/changePassword']);
-  }
+  } 
 
 }
