@@ -113,6 +113,15 @@ td {
     font-size: 1.8em;
     text-transform: uppercase;
     letter-spacing: 1px; /* Slight spacing for a clean look */
+} 
+
+.rule-reminder h3 {
+    color: #4DAF7C; /* Light green for consistency */ 
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin-bottom: 10px;
+    font-size: 1.4em;
+    text-transform: uppercase;
+    letter-spacing: 1px; /* Slight spacing for a clean look */
 }
 
 .rule-reminder p {
