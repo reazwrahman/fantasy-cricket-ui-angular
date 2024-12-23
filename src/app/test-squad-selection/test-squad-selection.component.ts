@@ -22,11 +22,10 @@ export class TestSquadSelectionComponent {
   ];
 
   // Triggered on change of selection
-  onSelectionChange(item: any, event: any) { 
-    
-    item.selected = false;
-    //item.selected = event.target.checked;
-    this.runBusinessLogic(item); 
+  onSelectionChange(item: any, event: Event) { 
+    item.selected = !item.selected;
+    this.selectionCounter = (this.selections.filter(item=>item.selected)).length;
+    this.runBusinessLogic(item);
   }
 
   // Business logic example

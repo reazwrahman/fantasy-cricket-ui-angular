@@ -15,6 +15,7 @@ import { ChangeUsernameComponent } from './auth/change-username/change-username.
 
 import { ViewSquadComponent } from './view-squad/view-squad.component'; 
 import { TestSquadSelectionComponent } from './test-squad-selection/test-squad-selection.component'; 
+import { TimerComponent } from './timer/timer.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -32,7 +33,8 @@ export const routes: Routes = [
   { path: 'auth/changeUsername', component: ChangeUsernameComponent},
 
   { path: 'view-squad', component: ViewSquadComponent}, 
-  { path: 'test-squad', component: TestSquadSelectionComponent}, 
+  { path: 'test-squad', component: TestSquadSelectionComponent},  
+  { path: 'timer', component: TimerComponent}, 
 
   { path: 'server-error', component: ErrorComponentComponent },
   { path: '**', component: ErrorComponentComponent }

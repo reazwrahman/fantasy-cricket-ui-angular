@@ -1,0 +1,20 @@
+.timer {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    margin: 20px;
+  }
+  
+  .time-display {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    font-size: 24px;
+  }
+  
+  span {
+    padding: 5px 10px;
+    background-color: #1b0000;
+    color: rgb(255, 38, 38);
+    border-radius: 5px;
+  }
+  
