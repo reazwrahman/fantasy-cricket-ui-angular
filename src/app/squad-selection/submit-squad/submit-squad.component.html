@@ -1,4 +1,5 @@
-<app-main-navbar />
+<app-main-navbar /> 
+<app-timer [targetTimestamp]="startTime"></app-timer>
 
 <div class="main-container">
     <br>
@@ -7,18 +8,19 @@
         <div class="carousel">
             <!-- card for displaying game details -->
             <div class="carousel-item">
-            <img 
-                [src] = game!.image 
-                [alt] = game!.title 
-                /> 
+                <img [src]=game!.image [alt]=game!.title />
                 <div class="carousel-info">
                     <h3> {{game?.title}} </h3>
                     <a [href]="game!.squad_link" target="_blank" rel="noopener noreferrer">
                         Match Squad (ESPN)
                     </a>
-                    <br> 
+                    <br>
                     <br>
                 </div>
-            </div> 
-        </div> 
+            </div>
+        </div>
     </div> 
+
+<app-squad-selection-navbar/>
+
+</div><!-- end of page container -->

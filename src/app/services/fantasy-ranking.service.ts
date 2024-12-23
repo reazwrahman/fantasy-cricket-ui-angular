@@ -60,5 +60,10 @@ export class FantasyRankingService {
     const headers = { 'Authorization': token };
 
     return this.http.post(apiUrl, payload, { headers });
+  } 
+
+  getMatchSquad(matchId: string): Observable<any> { 
+    const apiUrl = getApiUrl('matchSquad', {matchId}); 
+    return this.getRequest(apiUrl);
   }
 }

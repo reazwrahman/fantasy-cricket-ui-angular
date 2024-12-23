@@ -1,20 +1,68 @@
+.timer-container { 
+    width: 80%; 
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1cqmin auto;
+    padding: 10px;
+    background-color: #e7e7e7; /* Dark rectangular background */
+    border: 2px solid #f6f5f5; /* Red border */
+    border-radius: 10px; /* Slightly rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Optional shadow for a sleek effect */
+}
+  
 .timer {
     text-align: center;
     font-family: Arial, sans-serif;
     margin: 20px;
-  }
-  
-  .time-display {
+}
+
+.time-display {
     display: flex;
     justify-content: center;
     gap: 10px;
     font-size: 24px;
-  }
-  
-  span {
+} 
+
+.timer-container p {
+    font-size: 0.9em; /* Smaller font size for footnote feel */
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin: 8px 0;
+    color: #444444; /* A lighter gray for a softer appearance */
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); /* Softer shadow */
+    font-style: italic; /* Makes text italicized */
+    line-height: 1.5; /* Adds better readability spacing */
+    border-top: 1px solid #ccc; /* Adds a subtle dividing line above the text */
+    padding-top: 5px; /* Creates space between text and dividing line */
+}
+
+span {
     padding: 5px 10px;
-    background-color: #1b0000;
-    color: rgb(255, 38, 38);
+    background-color: #000000;
+    color: rgb(34, 228, 0);
     border-radius: 5px;
-  }
-  
+}
+
+/* Media query for smaller screens */
+@media (max-width: 480px) { 
+    .timer-container{ 
+        width: auto; 
+    }
+    .time-display {
+        font-size: 18px;
+        /* flex-direction: column; */
+        /* Stack the elements vertically on small screens */
+        gap: 5px;
+    }
+
+    span {
+        padding: 4px 8px;
+        font-size: 16px;
+    }
+
+    .timer {
+        margin: 10px;
+        /* Reduce margin for small screens */
+    }
+}
