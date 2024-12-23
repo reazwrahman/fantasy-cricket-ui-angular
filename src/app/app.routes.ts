@@ -13,7 +13,8 @@ import { ResetPasswordComponent } from './auth/reset-password/reset-password.com
 import { ChangePasswordComponent } from './auth/change-password/change-password.component';
 import { ChangeUsernameComponent } from './auth/change-username/change-username.component';
 
-import { ViewSquadComponent } from './view-squad/view-squad.component';
+import { ViewSquadComponent } from './view-squad/view-squad.component'; 
+import { TestSquadSelectionComponent } from './test-squad-selection/test-squad-selection.component'; 
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -30,7 +31,8 @@ export const routes: Routes = [
   { path: 'auth/changePassword', component: ChangePasswordComponent}, 
   { path: 'auth/changeUsername', component: ChangeUsernameComponent},
 
-  { path: 'view-squad', component: ViewSquadComponent},
+  { path: 'view-squad', component: ViewSquadComponent}, 
+  { path: 'test-squad', component: TestSquadSelectionComponent}, 
 
   { path: 'server-error', component: ErrorComponentComponent },
   { path: '**', component: ErrorComponentComponent }
