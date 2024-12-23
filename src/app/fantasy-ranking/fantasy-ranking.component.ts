@@ -15,6 +15,7 @@ export interface Game {
   title: string;
   image: string;
   scorecard: string;
+  squad_link: string;
 }
 
 export interface Ranking {

@@ -1,0 +1,92 @@
+/* Navbar Container */
+.navbar-container {
+    display: flex; /* Use flexbox for centering */
+    justify-content: center; /* Center horizontally */
+    margin: 20px 0; /* Margin above and below */
+}
+
+/* Navbar Style */
+.navbar {
+    width: 80%; /* Keep the width */
+    background-color: #292929; /* Dark background */
+    padding: 15px 20px; /* Padding for spacing */
+    border-radius: 12px; /* Rounded corners */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); /* Enhanced shadow for depth */
+}
+
+/* Navbar Items */
+.navbar ul {
+    list-style: none; /* Remove default list styling */
+    display: flex; /* Arrange items in a row */
+    justify-content: space-around; /* Space items evenly */
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margin */
+}
+
+/* Navbar Item Styles */
+.navbar li {
+    font-family: 'Russo One', sans-serif;
+    font-size: 1.4rem; /* Larger font size */
+    color: #ffffff; /* White text color */
+    cursor: pointer; /* Pointer on hover */
+    position: relative; /* Position for pseudo-elements */
+    transition: color 0.3s, background-color 0.3s; /* Smooth color transition */
+    padding: 0.5rem 1rem; /* Padding to increase clickable area */
+    background-color: #031400; /* Button-like background color */
+    border-radius: 5px; /* Rounded corners */
+    display: inline-block; /* Makes the li behave like a button */
+}
+
+/* Active Tab Indicator */
+.navbar li.active {
+    color: #00cc80; /* Change color for active tab */
+    text-shadow: 0px 0px 10px rgba(78, 148, 121, 0.8); /* Glow effect */
+}
+
+/* Hover Effects */
+.navbar li:hover {
+    color: #00cc80; /* Bright color on hover */
+}
+
+.navbar li:hover::after {
+    content: ''; /* Create a pseudo-element for the underline */
+    position: absolute; /* Position it absolutely */
+    left: 50%; /* Center it */
+    bottom: -5px; /* Position it below the text */
+    width: 70%; /* Width of the underline */
+    height: 4px; /* Height of the underline */
+    background-color: #00cc80; /* Color of the underline */
+    transform: translateX(-50%); /* Center it */
+    border-radius: 5px; /* Rounded edges */
+    opacity: 0; /* Initially hidden */
+    transition: opacity 0.3s; /* Smooth transition */
+}
+
+/* Show underline on hover */
+.navbar li:hover::after {
+    opacity: 1; /* Show when hovered */
+}
+
+
+/* ----------- phone screen ----------- */
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column; /* Stack items vertically on smaller screens */
+        align-items: flex-start; /* Align to the left */
+    }
+
+    .navbar ul {
+        flex-direction: column; /* Stack items vertically */
+        width: 100%; /* Full width for mobile */
+        padding: 10px 0; /* Adjust padding for mobile */ 
+        gap: 5px;
+    }
+
+    .navbar li {
+        font-size: 1.2rem; /* Smaller font size for mobile */
+        padding: 10px; /* Padding adjustments */
+        text-align: center; /* Center text on mobile */
+        width: 90%; /* Make items full width on mobile */
+    } 
+}

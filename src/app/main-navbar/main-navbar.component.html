@@ -4,7 +4,7 @@
 
         <ul class="nav-links">
             <li (click)="routeRanking()">Rankings</li>
-            <li (click)="routeRanking()">Join League</li>
+            <li (click)="routeJoinLeague()">Join League</li>
             <li (click)="routeViewSquad()">View My Squad</li>
 
             <li class="dropdown" *ngIf="isLoggedIn(); else guestLinks"> Welcome {{username}} ▾
