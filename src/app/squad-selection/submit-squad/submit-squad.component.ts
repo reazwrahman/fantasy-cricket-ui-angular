@@ -85,8 +85,10 @@ export class SubmitSquadComponent {
     this.selectedTab = tab; // Update the selected tab 
     if (this.selectedTab == BATTERS_TAB) {
       this.squadForSelection = this.matchSquad!.batters;
+
     } else if (this.selectedTab == BOWLERS_TAB) {
       this.squadForSelection = this.matchSquad!.bowlers;
+      
     } else if (this.selectedTab == BONUS_TAB) {
       this.pickedSquad = this.pickedBatters.concat(this.pickedBowlers); 
       this.pickedCaptain = this.pickedSquad[0]; 

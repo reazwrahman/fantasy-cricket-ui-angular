@@ -58,7 +58,8 @@
     <!--------- checkboxes for bonus points ---------->
     <div *ngIf="selectedTab == BONUS_TAB"> 
         <div class="additional-info">
-            <p> Reminder: Captain and Vice-captain can not be the same player </p>
+            <p> Reminder: Captain and Vice-captain can not be the same player </p> 
+            <p> Players picked: {{this.pickedSquad.length}}</p>
         </div>
         <div class="dropdown-container">
             <label for="game-select" class="dropdown-label">Pick your Captain (x2 points) :</label>
@@ -69,15 +70,17 @@
                 <span class="dropdown-arrow">&#9662;</span>
             </div>
 
-            <br> <br>
+            <br> <br> 
             <label for="game-select" class="dropdown-label">Pick your Vice Captain (x1.5 points) :</label>
             <div class="dropdown-wrapper">
                 <select id="game-select-vice-captain" [(ngModel)]="pickedViceCaptain">
                     <option *ngFor="let player of pickedSquad" [ngValue]="player">{{ player.Name }} </option>
                 </select>
                 <span class="dropdown-arrow">&#9662;</span>
+            </div> 
 
-            </div>
+            <br> <br> 
+
         </div> <!-- end of dropdown container-->
     </div> <!-- end of ngIf: bonus tab-->
 

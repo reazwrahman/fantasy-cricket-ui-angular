@@ -49,7 +49,7 @@ export class TimerComponent implements OnInit, OnDestroy {
       if (difference <= 0) { 
         this.textColor = 'rgb(255, 48, 21)';
         this.windowIsOpen = false;
-        this.closedMessage = "The submission window for this selection is now closed but feel free to experiment with your fantasy squad!"
+        this.closedMessage = "The submission window for this game is now closed, but feel free to experiment with your fantasy squad!"
         clearInterval(this.timerInterval); // Stop timer when time is up
       } else {
         if (difference > 0 && difference < 10) {
