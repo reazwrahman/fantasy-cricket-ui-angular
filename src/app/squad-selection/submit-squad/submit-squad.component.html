@@ -59,26 +59,38 @@
     <div *ngIf="selectedTab == BONUS_TAB"> 
         <div class="additional-info">
             <p> Reminder: Captain and Vice-captain can not be the same player </p> 
-            <p> Players picked: {{this.pickedSquad.length}}</p>
-        </div>
+            <p> Players picked: {{this.pickedBatters.length + this.pickedBowlers.length}}</p>
+        </div> 
+
+        <!-- captain selection -->
         <div class="dropdown-container">
-            <label for="game-select" class="dropdown-label">Pick your Captain (x2 points) :</label>
+            <label for="game-select" class="dropdown-label">Pick your Captain (x2 points):</label>
             <div class="dropdown-wrapper">
-                <select id="game-select-captain" [(ngModel)]="pickedCaptain">
+                <select id="game-select-captain" [(ngModel)]="pickedCaptain" (change)="onDropdownChange($event)" > 
                     <option *ngFor="let player of pickedSquad" [ngValue]="player">{{ player.Name }} </option>
                 </select>
                 <span class="dropdown-arrow">&#9662;</span>
             </div>
-
             <br> <br> 
-            <label for="game-select" class="dropdown-label">Pick your Vice Captain (x1.5 points) :</label>
+
+            <!-- vice captain selection -->
+            <label for="game-select" class="dropdown-label">Pick your Vice Captain (x1.5 points):</label>
             <div class="dropdown-wrapper">
-                <select id="game-select-vice-captain" [(ngModel)]="pickedViceCaptain">
+                <select id="game-select-vice-captain" [(ngModel)]="pickedViceCaptain" (change)="onDropdownChange($event)">
                     <option *ngFor="let player of pickedSquad" [ngValue]="player">{{ player.Name }} </option>
                 </select>
                 <span class="dropdown-arrow">&#9662;</span>
             </div> 
+            <br> <br>  
 
+            <!-- match predictions --> 
+            <label for="game-select" class="dropdown-label">Match prediction (+100 pts):</label>
+            <div class="dropdown-wrapper">
+                <select id="game-select-prediction" [(ngModel)]="pickedPrediction" (change)="onDropdownChange($event)">
+                    <option *ngFor="let prediction of predictionsAvailable" [ngValue]="prediction">{{ prediction.val }} </option>
+                </select>
+                <span class="dropdown-arrow">&#9662;</span>
+            </div> 
             <br> <br> 
 
         </div> <!-- end of dropdown container-->

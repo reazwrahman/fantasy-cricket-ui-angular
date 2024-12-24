@@ -21,6 +21,7 @@ export interface SquadResponse {
   start_time: number;
   batters: PlayersInfo[];
   bowlers: PlayersInfo[];
+  predictions: PredictionInfo[];
 }
 
 export interface PlayersInfo {
@@ -29,6 +30,21 @@ export interface PlayersInfo {
   Name: String;
   Role: String[];
   selected: boolean;
+}
+
+export interface PredictionInfo {
+  id: string;
+  val: string
+}
+
+export interface LocalStorageData {
+  pickedBatters: PlayersInfo[] | [];
+  pickedBowlers: PlayersInfo[] | [];
+  pickedSquad: PlayersInfo[] | [];
+
+  pickedCaptain: PlayersInfo | null;
+  pickedViceCaptain: PlayersInfo | null;
+  pickedPrediction: PredictionInfo | null;
 }
 
 @Component({
@@ -47,20 +63,21 @@ export class SubmitSquadComponent {
   BONUS_TAB = BONUS_TAB;
   SUBMIT_TAB = SUBMIT_TAB;
 
-  PICKED_BATTERS_KEY: string = "";
-  PICKED_BOWLERS_KEY: string = "";
+  LOCAL_STORAGE_KEY: string = ""; // key used to set/get item from local storage
 
   game: Game | null = null;
   matchSquad: SquadResponse | null = null;
   startTime: number = 1; // initial value, dont set to 0 
+  predictionsAvailable: PredictionInfo[] | null = null;
   selectedTab: String = BATTERS_TAB;
 
-  squadForSelection: PlayersInfo[] = [];
+  squadForSelection: PlayersInfo[] = []; // all the available players for selection
   pickedBatters: PlayersInfo[] = [];
   pickedBowlers: PlayersInfo[] = [];
-  pickedSquad: PlayersInfo[] = [];
-  pickedCaptain: PlayersInfo | null = null; 
+  pickedSquad: PlayersInfo[] = []
+  pickedCaptain: PlayersInfo | null = null;
   pickedViceCaptain: PlayersInfo | null = null;
+  pickedPrediction: PredictionInfo | null = null;
 
   constructor(private fantasyRankingService: FantasyRankingService,
     private router: Router) { }
@@ -71,14 +88,26 @@ export class SubmitSquadComponent {
   }
 
 
-  // ------------------- Template Binds ----------------------// 
+  // ------------------- Template Binds/ UI related ----------------------// 
   onSelectionChange(player: PlayersInfo, event: Event) {
     if (this.selectedTab == BATTERS_TAB) {
       this.pickedBatters = this.matchSquad!.batters.filter(item => item.selected);
     } else {
       this.pickedBowlers = this.matchSquad!.bowlers.filter(item => item.selected);
     }
-    this.savePickedSquad();
+    this.pickedSquad = this.pickedBatters.concat(this.pickedBowlers);
+
+    // set default value for the other options, if none is picked already 
+    this.pickedCaptain = (this.pickedCaptain == null) ? this.pickedSquad[0] : this.pickedCaptain;
+    this.pickedViceCaptain = (this.pickedViceCaptain == null) ? this.pickedSquad[1] : this.pickedViceCaptain;
+    this.pickedPrediction = (this.pickedPrediction == null && this.predictionsAvailable != null)? this.predictionsAvailable[0] : null;
+    
+
+    this.writeToStorage();
+  }
+
+  onDropdownChange(event:Event){  
+    this.writeToStorage();
   }
 
   onTabSelected(tab: string) {
@@ -88,11 +117,7 @@ export class SubmitSquadComponent {
 
     } else if (this.selectedTab == BOWLERS_TAB) {
       this.squadForSelection = this.matchSquad!.bowlers;
-      
-    } else if (this.selectedTab == BONUS_TAB) {
-      this.pickedSquad = this.pickedBatters.concat(this.pickedBowlers); 
-      this.pickedCaptain = this.pickedSquad[0]; 
-      this.pickedViceCaptain = this.pickedBatters[1];
+
     }
     this.loadFromStorage();
   }
@@ -103,12 +128,28 @@ export class SubmitSquadComponent {
       (this.pickedBatters.length + this.pickedBowlers.length >= 11)
   }
 
+  fillPlayerCheckboxes() {
+    let fullSquad: PlayersInfo[] = this.pickedBatters.concat(this.pickedBowlers);
+    // check the picked player in the UI
+    for (let i = 0; i < fullSquad.length; i++) {
+      let targetIndex = this.findIndexFromTargetList(fullSquad[i].id, this.squadForSelection);
+      if (targetIndex >= 0 && targetIndex <= 11) {
+        this.squadForSelection[targetIndex].selected = true;
+      }
+    }
+  } 
+
+  fillDefaultDropdowns(){
+    this.pickedCaptain = this.pickedSquad[this.findIndexFromTargetList(this.pickedCaptain!.id, this.pickedSquad)]; 
+    this.pickedViceCaptain = this.pickedSquad[this.findIndexFromTargetList(this.pickedViceCaptain!.id, this.pickedSquad)];
+    this.pickedPrediction = this.predictionsAvailable? this.predictionsAvailable[this.findIndexFromTargetList(this.pickedPrediction!.id, this!.predictionsAvailable)]: null;
+  }
+
   // ------------------- auxiliary methods::startup ----------------------//  
   getGameInfo() {
     this.game = sessionStorage.getItem(SELECTED_GAME) ? JSON.parse(sessionStorage[SELECTED_GAME]!) : null;
     if (this.game != null) {
-      this.PICKED_BATTERS_KEY = this.game.id + "#" + "PICKED_BATTERS";
-      this.PICKED_BOWLERS_KEY = this.game.id + "#" + "PICKED_BOWLERS";
+      this.LOCAL_STORAGE_KEY = this.game.id + "#" + "squad-selection";
     }
   }
 
@@ -119,6 +160,7 @@ export class SubmitSquadComponent {
           this.matchSquad = response;
           this.startTime = this.matchSquad!.start_time;
           this.squadForSelection = this.matchSquad!.batters;
+          this.predictionsAvailable = this.matchSquad!.predictions;
           this.loadFromStorage();
         }
       });
@@ -126,27 +168,32 @@ export class SubmitSquadComponent {
   }
 
   // -------------------------- auxiliary methods::local storage --------------------//
-  savePickedSquad() {
-    localStorage.setItem(this.PICKED_BATTERS_KEY, JSON.stringify(this.pickedBatters));
-    localStorage.setItem(this.PICKED_BOWLERS_KEY, JSON.stringify(this.pickedBowlers));
+  writeToStorage() {
+    let data: LocalStorageData = {
+      pickedBatters: this.pickedBatters,
+      pickedBowlers: this.pickedBowlers,
+      pickedSquad: this.pickedSquad,
+      pickedCaptain: this.pickedCaptain,
+      pickedViceCaptain: this.pickedViceCaptain,
+      pickedPrediction: this.pickedPrediction
+    };
+    localStorage.setItem(this.LOCAL_STORAGE_KEY, JSON.stringify(data));
   }
 
   loadFromStorage() {
-    this.pickedBatters = localStorage.getItem(this.PICKED_BATTERS_KEY) ? JSON.parse(localStorage[this.PICKED_BATTERS_KEY]!) : [];
-    this.pickedBowlers = localStorage.getItem(this.PICKED_BOWLERS_KEY) ? JSON.parse(localStorage[this.PICKED_BOWLERS_KEY]!) : [];
+    let rawData: string | null = localStorage.getItem(this.LOCAL_STORAGE_KEY);
+    const storedData: LocalStorageData = rawData ? JSON.parse(rawData) : {};
 
-    let fullSquad: PlayersInfo[] = this.pickedBatters.concat(this.pickedBowlers);
+    this.pickedBatters = storedData.pickedBatters ? storedData.pickedBatters : [];
+    this.pickedBowlers = storedData.pickedBowlers ? storedData.pickedBowlers : [];
+    this.pickedSquad = storedData.pickedSquad ? storedData.pickedSquad : [];
 
-    // check the picked player in the UI
-    for (let i = 0; i < fullSquad.length; i++) {
-      let targetId = fullSquad[i].id;
-      this.squadForSelection;
-      let targetIndex = this.squadForSelection.findIndex(player => player.id == targetId);
-      console.log(targetIndex);
-      if (targetIndex >= 0 && targetIndex <= 11) {
-        this.squadForSelection[targetIndex].selected = true;
-      }
-    }
+    this.pickedCaptain = storedData.pickedCaptain ? storedData.pickedCaptain : null;
+    this.pickedViceCaptain = storedData.pickedViceCaptain ? storedData.pickedViceCaptain : null;
+    this.pickedPrediction = storedData.pickedPrediction ? storedData.pickedPrediction : null;
+
+    this.fillPlayerCheckboxes(); 
+    this.fillDefaultDropdowns();
   }
 
   // -------------------------- auxiliary methods::user squad collection --------------------// 
@@ -160,5 +207,14 @@ export class SubmitSquadComponent {
   // TODO: if user is not authenticated: save last visited url in local storage, add logic to main navbar 
   // TODO: overrwrite local storage data 
   // call api
+
+  // -------------------------- Utility methods  --------------------// 
+
+    // given an id of a player, it will return the corresponding player from the 
+    //    provided list. The list could be full squad selection or the picked squad 
+    //    e.g:  findIndexFromPlayerList(23, pickedSquad)
+    findIndexFromTargetList(uniqueId:String, targetList:PlayersInfo[] | PredictionInfo[]){ 
+      return targetList.findIndex(iterator => iterator.id == uniqueId);
+    }
 
 } // end of class
