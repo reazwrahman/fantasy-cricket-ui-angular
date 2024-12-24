@@ -1,4 +1,4 @@
-<app-main-navbar /> 
+<app-main-navbar />
 <app-timer [targetTimestamp]="startTime"></app-timer>
 
 <div class="main-container">
@@ -19,8 +19,40 @@
                 </div>
             </div>
         </div>
-    </div> 
+    </div>
 
-<app-squad-selection-navbar/>
+    <app-squad-selection-navbar (tabSelected)="onTabSelected($event)"></app-squad-selection-navbar>
+    <br>
+
+
+    <!--------- checkboxes for batters/bowlers ---------->
+    <div *ngIf="selectedTab == BATTERS_TAB || selectedTab == BOWLERS_TAB">
+        <div class="additional-info">
+            <p> Select at least 3 (and no more than 7) {{selectedTab}} from the options below</p>
+                <p> Batters picked: {{this.pickedBatters.length}}</p>
+                <p> Bowlers picked: {{this.pickedBowlers.length}}</p>
+            
+        </div>
+        <div class="selection-container">
+            <div *ngFor="let player of squadForSelection" class="info-tile">
+                <label class="checklist-item" [ngClass]="{'selected': player.selected}">
+                    <!-- Checkbox -->
+                    <input type="checkbox" [(ngModel)]="player.selected" (change)="onSelectionChange(player, $event)"
+                        [disabled]="!player.selected && CheckDisableLogic()" />
+
+                    <!-- Player info -->
+                    <div class="player-info">
+                        <p>
+                            <strong>{{ player.Name }} </strong>
+                            <span *ngIf="player.InPlayingXi">
+                                <strong>(In Playing XI)</strong>
+                            </span>
+                        </p>
+                    </div>
+                </label>
+            </div>
+        </div>
+    </div>
+    <!------------------------------------------------------ >
 
 </div><!-- end of page container -->

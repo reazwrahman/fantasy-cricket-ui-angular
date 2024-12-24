@@ -109,4 +109,99 @@
         max-width: 150px;
     }
 }
-/* ---------------------------------------------------- */ 
+/* ---------------------------------------------------- */  
+
+/* --------------------- additional info ------------------------------- */  
+.additional-info { 
+    width: auto;
+    max-width: 70%; 
+    margin: 30px auto; /* Center the div with margin */
+    padding: 20px; 
+    background-color: #171e1e; /* Same dark background as table header */
+    border-radius: 12px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Subtle shadow for depth */
+    color: #fff;
+    text-align: center;
+    line-height: 1.6;
+    font-family: 'Arial', sans-serif;
+}
+
+
+.additional-info p {
+    font-size: 1.1em; 
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin: 8px 0;
+    color: #e0e0e0; /* Slightly lighter font for paragraphs */
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+
+/* ---------------------style for checkboxes ------------------------------- */  
+/* Updated checklist item with dark green and hover effect */ 
+
+.selection-container {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    align-items: left; /* Horizontally center the container */
+    justify-content: left; /* Center the children vertically */
+    width: 70%; /* Ensure full container width */
+    padding: 20px;
+}
+
+.checklist-item {
+    display: flex;
+    align-items: left;
+    padding: 14px 20px;
+    background-color: #292929; /* Dark background */
+    border-radius: 10px;
+    margin-bottom: 5px;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    cursor: pointer;
+    color: #fff;
+    width: 100%; /* Let the checkbox item fill up the container's width */
+    margin: 5px auto; /* Horizontally center the checklist item */ 
+    font-size: 1.0em;
+}
+
+
+.checklist-item:hover {
+    transform: scale(1.02); /* Slight zoom on hover */
+}
+
+/* Styling for the checkbox itself */
+.checklist-item input {
+    margin-right: 15px;
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
+    accent-color: #ebf2ec; /* Green accent color for the checkbox */
+    border-radius: 4px;
+}
+
+/* Styling for the selected state */
+.checklist-item.selected {
+    color: #fff;
+}
+
+.selected .player-info p {
+    color: #6af66f; /* Bright green text when selected */
+    font-size: 1.2em;
+}
+
+/* Add custom focus style for the checkbox when it's clicked */
+.checklist-item input:focus-visible {
+    outline: 3px solid #4CAF50; /* Green outline when focus is visible */
+}
+
+/* Small screen adjustments */
+@media (max-width: 768px) {
+    .checklist-item {
+        padding: 12px 15px;
+        font-size: 0.95em;
+    }
+
+    .checklist-item input {
+        width: 20px; /* Larger checkbox size for small screens */
+        height: 20px;
+    }
+}

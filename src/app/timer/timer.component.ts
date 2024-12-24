@@ -38,8 +38,13 @@ export class TimerComponent implements OnInit, OnDestroy {
 
   startTimer(): void {
     this.timerInterval = setInterval(() => {
-      const currentTime = Date.now();
-      const difference = this.targetTimestamp - currentTime;
+      let currentTime = Date.now();  // UTC
+      let currentTimeEST = new Date(currentTime).toLocaleString("en-US", {
+        timeZone: "America/New_York",
+      });  // convert to EST
+      currentTime = new Date(currentTimeEST).getTime(); // convert to milliseconds
+      
+      const difference = this.targetTimestamp - currentTime; // find delta
 
       if (difference <= 0) { 
         this.textColor = 'rgb(255, 48, 21)';
