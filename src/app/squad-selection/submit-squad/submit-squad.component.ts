@@ -88,9 +88,12 @@ export class SubmitSquadComponent {
     }
   }
 
-  onSelectionChange(player: PlayersInfo, event: Event) {
-    this.pickedBatters = this.matchSquad!.batters.filter(item => item.selected);
-    this.pickedBowlers = this.matchSquad!.bowlers.filter(item => item.selected); 
+  onSelectionChange(player: PlayersInfo, event: Event) { 
+    if (this.selectedTab == BATTERS_TAB){
+      this.pickedBatters = this.matchSquad!.batters.filter(item => item.selected);
+    }else{
+      this.pickedBowlers = this.matchSquad!.bowlers.filter(item => item.selected); 
+    }
     this.savePickedSquad();
   }
 
