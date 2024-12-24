@@ -54,7 +54,6 @@
 /* Prevent the first item from being cut off */
 .carousel-item {
     flex: 0 0 auto; /* Ensure items don’t shrink */
-    max-width: 300px; /* width */
     max-height: 400px; /*height */ 
     background: linear-gradient(135deg, #202734, #293b5b);
     border-radius: 12px;
@@ -106,7 +105,7 @@
         padding: 0 10px; 
     } 
     .carousel-item{ 
-        max-width: 150px;
+        max-width: 200px;
     }
 }
 /* ---------------------------------------------------- */  
@@ -137,8 +136,6 @@
 
 
 /* ---------------------style for checkboxes ------------------------------- */  
-/* Updated checklist item with dark green and hover effect */ 
-
 .selection-container {
     display: flex;
     flex-direction: column; /* Stack items vertically */
@@ -204,4 +201,69 @@
         width: 20px; /* Larger checkbox size for small screens */
         height: 20px;
     }
+}
+ 
+
+/* ---------------------style for dropdowns in bonus ------------------------------- */ 
+.dropdown-container {
+    display: flex;
+    padding: 50px 0px; 
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: #131a24;
+    border-radius: 20px;
+}
+
+
+#game-select-captain, #game-select-vice-captain {
+    appearance: none;
+    padding: 10px 10px;
+    margin-top: 5px;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+    border: 2px solid #007bff;
+    border-radius: 8px;
+    background-color: #f5f5f5;
+    color: #333;
+    cursor: pointer;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    position: relative; /* Make sure the position is relative for correct placement of the arrow */
+    padding-right: 25px; /* Provide space for the arrow */
+}
+
+/* Label styling */
+.dropdown-label {
+    font-size: 20px;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 5px;
+    font-family: Arial, sans-serif;
+}
+
+/* Hover and focus styles */
+#game-select-captain:hover, #game-select-vice-captain:hover,
+#game-select-captain:focus, #game-select-vice-captain:focus {
+    border-color: #0056b3;
+    box-shadow: 0px 4px 8px rgba(0, 123, 255, 0.2);
+}
+
+/* Arrow styling */
+.dropdown-arrow {
+    content: '▼';
+    font-size: 16px;
+    color: #333;
+    position: relative;
+    right: 20px; 
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+/* Option styling */
+#game-select-captain option, #game-select-vice-captain option {
+    font-size: 16px;
+    padding: 10px;
+    background-color: #f5f5f5;
+    color: #333;
 }
