@@ -247,8 +247,8 @@ export class SubmitSquadComponent {
           this.alertSuccess("Congrats! Your squad has been successfully submitted");
           this.router.navigate(['home']);
         },
-        (error) => {
-          this.alertError(error.message);
+        (error) => { 
+          this.alertError(error.error.error);
         });
   }
 
