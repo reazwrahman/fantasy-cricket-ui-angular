@@ -65,5 +65,19 @@ export class FantasyRankingService {
   getMatchSquad(matchId: string): Observable<any> { 
     const apiUrl = getApiUrl('matchSquad', {matchId}); 
     return this.getRequest(apiUrl);
-  }
+  } 
+
+  submitSquad(token: string, email: string, userId: string, matchId: string, fantasySquad:any): Observable<any> {
+    const apiUrl = getApiUrl('submitSquad');
+    const payload = {
+      email: email,
+      user_id: userId,
+      match_id: matchId,
+      fantasy_squad: fantasySquad
+    };
+
+    const headers = { 'Authorization': token };
+
+    return this.http.post(apiUrl, payload, { headers });
+  } 
 }

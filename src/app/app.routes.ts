@@ -17,11 +17,6 @@ import { ViewSquadComponent } from './view-squad/view-squad.component';
 import { SquadSelectionComponent } from './squad-selection/squad-selection.component';
 import { SubmitSquadComponent } from './squad-selection/submit-squad/submit-squad.component';
 
-// TEST (TODO: REMOVE IN FINAL)
-import { TestSquadSelectionComponent } from './test-squad-selection/test-squad-selection.component'; 
-import { TimerComponent } from './timer/timer.component';  
-import { SquadSelectionNavbarComponent } from './squad-selection/squad-selection-navbar/squad-selection-navbar.component'; 
-
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'navbar', component: MainNavbarComponent },
@@ -40,12 +35,6 @@ export const routes: Routes = [
   { path: 'view-squad', component: ViewSquadComponent},  
   { path: 'squad-selection', component: SquadSelectionComponent}, 
   { path: 'squad-selection/submit-squad', component: SubmitSquadComponent},
-
-  // TODO: REMOVE (USED FOR TESTING ONLY)
-  { path: 'test-squad', component: TestSquadSelectionComponent},  
-  { path: 'timer', component: TimerComponent},   
-  { path: 'squad-selection/submit-squad', component: SubmitSquadComponent}, 
-  { path: 'squad-selection/navbar', component: SquadSelectionNavbarComponent},
 
   { path: 'server-error', component: ErrorComponentComponent },
   { path: '**', component: ErrorComponentComponent }

@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
 
 import { Game } from '../squad-selection.component'
 import { FantasyRankingService } from '../../services/fantasy-ranking.service';
-import { UserInfo } from '../../services/auth.service';
+import { AuthService, UserInfo } from '../../services/auth.service';
 import { MainNavbarComponent } from '../../main-navbar/main-navbar.component';
 import { SquadSelectionNavbarComponent } from '../squad-selection-navbar/squad-selection-navbar.component';
 import { TimerComponent } from '../../timer/timer.component';
@@ -17,6 +17,13 @@ import { BATTERS_TAB, BOWLERS_TAB, BONUS_TAB, SUBMIT_TAB } from '../squad-select
 
 export const SELECTED_GAME = "squad-selecton#selected_game";
 
+export interface SubmitDataModel {
+  selected_squad: string[];
+  captain: string,
+  vice_captain: string,
+  result_prediction: string
+}
+
 export interface SquadResponse {
   start_time: number;
   batters: PlayersInfo[];
@@ -25,10 +32,10 @@ export interface SquadResponse {
 }
 
 export interface PlayersInfo {
-  id: String;
+  id: string;
   InPlayingXi: boolean;
-  Name: String;
-  Role: String[];
+  Name: string;
+  Role: string[];
   selected: boolean;
 }
 
@@ -69,7 +76,7 @@ export class SubmitSquadComponent {
   matchSquad: SquadResponse | null = null;
   startTime: number = 1; // initial value, dont set to 0 
   predictionsAvailable: PredictionInfo[] | null = null;
-  selectedTab: String = BATTERS_TAB;
+  selectedTab: string = BATTERS_TAB; // intial value
 
   squadForSelection: PlayersInfo[] = []; // all the available players for selection
   pickedBatters: PlayersInfo[] = [];
@@ -80,7 +87,7 @@ export class SubmitSquadComponent {
   pickedPrediction: PredictionInfo | null = null;
 
   constructor(private fantasyRankingService: FantasyRankingService,
-    private router: Router) { }
+    private router: Router, private authService: AuthService) { }
 
   ngOnInit() {
     this.getGameInfo();
@@ -100,13 +107,13 @@ export class SubmitSquadComponent {
     // set default value for the other options, if none is picked already 
     this.pickedCaptain = (this.pickedCaptain == null) ? this.pickedSquad[0] : this.pickedCaptain;
     this.pickedViceCaptain = (this.pickedViceCaptain == null) ? this.pickedSquad[1] : this.pickedViceCaptain;
-    this.pickedPrediction = (this.pickedPrediction == null && this.predictionsAvailable != null)? this.predictionsAvailable[0] : null;
-    
+    this.pickedPrediction = (this.pickedPrediction == null && this.predictionsAvailable != null) ? this.predictionsAvailable[0] : null;
+
 
     this.writeToStorage();
   }
 
-  onDropdownChange(event:Event){  
+  onDropdownChange(event: Event) {
     this.writeToStorage();
   }
 
@@ -120,6 +127,19 @@ export class SubmitSquadComponent {
 
     }
     this.loadFromStorage();
+  }
+
+  onSubmit() {
+    if (this.pickedCaptain?.id == this.pickedViceCaptain?.id) {
+      this.alertError("Captain and Vice Captain must be different players!")
+    } else if (!this.authService.isUserLoggedIn()) {
+      this.alertError("You have to login to submit a squad. \nDon't worry, we have saved your selections for when you come back! :)");
+      this.router.navigate(['auth/login']);
+    }else{ 
+      this.submitDataToAPI(); 
+      this.router.navigate(['home']);
+    }
+
   }
 
   CheckDisableLogic(): boolean {
@@ -137,12 +157,12 @@ export class SubmitSquadComponent {
         this.squadForSelection[targetIndex].selected = true;
       }
     }
-  } 
+  }
 
-  fillDefaultDropdowns(){
-    this.pickedCaptain = this.pickedSquad[this.findIndexFromTargetList(this.pickedCaptain!.id, this.pickedSquad)]; 
+  fillDefaultDropdowns() {
+    this.pickedCaptain = this.pickedSquad[this.findIndexFromTargetList(this.pickedCaptain!.id, this.pickedSquad)];
     this.pickedViceCaptain = this.pickedSquad[this.findIndexFromTargetList(this.pickedViceCaptain!.id, this.pickedSquad)];
-    this.pickedPrediction = this.predictionsAvailable? this.predictionsAvailable[this.findIndexFromTargetList(this.pickedPrediction!.id, this!.predictionsAvailable)]: null;
+    this.pickedPrediction = this.predictionsAvailable ? this.predictionsAvailable[this.findIndexFromTargetList(this.pickedPrediction!.id, this!.predictionsAvailable)] : null;
   }
 
   // ------------------- auxiliary methods::startup ----------------------//  
@@ -192,9 +212,38 @@ export class SubmitSquadComponent {
     this.pickedViceCaptain = storedData.pickedViceCaptain ? storedData.pickedViceCaptain : null;
     this.pickedPrediction = storedData.pickedPrediction ? storedData.pickedPrediction : null;
 
-    this.fillPlayerCheckboxes(); 
+    this.fillPlayerCheckboxes();
     this.fillDefaultDropdowns();
   }
+
+  // -------------------------- auxiliary methods::submit data --------------------// 
+
+  prepareDataForSubmission(): SubmitDataModel {
+    let selectedSquad: string[] = this.pickedSquad.map(iterator => iterator.id);
+
+    const submissionData: SubmitDataModel = {
+      selected_squad: selectedSquad,
+      captain: this.pickedCaptain ? this.pickedCaptain.id : "",
+      vice_captain: this.pickedViceCaptain ? this.pickedViceCaptain.id : "",
+      result_prediction: this.pickedPrediction ? this.pickedPrediction.id : ""
+    }
+    return submissionData;
+  }
+
+  submitDataToAPI() { 
+    let jwt: string = this.authService.getJwt();
+    const storedUserInfo: UserInfo | null = this.authService.getUserInfo();
+
+    this.fantasyRankingService.submitSquad(jwt, storedUserInfo!.email,
+      storedUserInfo!.userId, this.game!.id, this.prepareDataForSubmission()).subscribe(
+        (response) => {
+          this.alertSuccess("Congrats! Your squad has been successfully submitted");
+        },
+        (error) => {
+          this.alertError(error.message);
+        });
+  }
+
 
   // -------------------------- auxiliary methods::user squad collection --------------------// 
 
@@ -203,18 +252,33 @@ export class SubmitSquadComponent {
 
 
 
-  // -------------------------- auxiliary methods::submit data --------------------// 
-  // TODO: if user is not authenticated: save last visited url in local storage, add logic to main navbar 
-  // TODO: overrwrite local storage data 
-  // call api
 
   // -------------------------- Utility methods  --------------------// 
 
-    // given an id of a player, it will return the corresponding player from the 
-    //    provided list. The list could be full squad selection or the picked squad 
-    //    e.g:  findIndexFromPlayerList(23, pickedSquad)
-    findIndexFromTargetList(uniqueId:String, targetList:PlayersInfo[] | PredictionInfo[]){ 
-      return targetList.findIndex(iterator => iterator.id == uniqueId);
-    }
+  // given an id of a player, it will return the corresponding player from the 
+  //    provided list. The list could be full squad selection or the picked squad 
+  //    e.g:  findIndexFromPlayerList(23, pickedSquad)
+  findIndexFromTargetList(uniqueId: String, targetList: PlayersInfo[] | PredictionInfo[]) {
+    return targetList.findIndex(iterator => iterator.id == uniqueId);
+  }
+
+  alertError(message: string) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Error',
+      html: message.replace(/\n/g, '<br><br>'),
+      confirmButtonText: 'Got it',
+    });
+  } 
+
+  alertSuccess(message: string) {
+    Swal.fire({
+      icon: 'success',
+      title: 'Successful',
+      text: message,
+      timer: 15000,
+      showConfirmButton: true,
+    });
+  }
 
 } // end of class

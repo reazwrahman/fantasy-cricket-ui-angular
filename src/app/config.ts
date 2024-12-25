@@ -1,4 +1,9 @@
-const ENV: string = 'REMOTE'; // 'LOCAL' or 'REMOTE' based on the environment
+const Environments ={ 
+    LOCAL : 'LOCAL', 
+    REMOTE : 'REMOTE'
+}
+
+const ENV: string = Environments.LOCAL;
 
 const LOCAL_ENDPOINT = 'http://0.0.0.0:5001'
 const REMOTE_ENDPOINT = 'https://pe1nvrpbz4.execute-api.us-east-1.amazonaws.com/dev'
@@ -15,7 +20,8 @@ const apiConfig: ApiConfig = {
 
     // join league 
     viewSquad: '/squadSelection/viewMySquad', 
-    matchSquad: '/squadSelection/fullMatchSquad?match_id={matchId}',
+    matchSquad: '/squadSelection/fullMatchSquad?match_id={matchId}', 
+    submitSquad: '/squadSelection/submitSquad',
 
     // Authentication endpoints 
     login: '/auth/login', 
