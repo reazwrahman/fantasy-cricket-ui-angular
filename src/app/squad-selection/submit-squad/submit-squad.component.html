@@ -55,7 +55,7 @@
     </div>
     <!------------------------------------------------------ -->
 
-    <!--------- checkboxes for bonus points ---------->
+    <!--------- dropdowns for bonus points ---------->
     <div *ngIf="selectedTab == BONUS_TAB"> 
         <div class="additional-info">
             <p> Reminder: Captain and Vice-captain can not be the same player </p> 
@@ -92,8 +92,27 @@
                 <span class="dropdown-arrow">&#9662;</span>
             </div> 
             <br> <br> 
-
         </div> <!-- end of dropdown container-->
-    </div> <!-- end of ngIf: bonus tab-->
+    </div> <!-- end of ngIf: bonus tab-->  
+    <!------------------------------------------------------ --> 
+
+    <!--------- view for finalize squad -------------------- --> 
+    <div *ngIf="selectedTab == SUBMIT_TAB" class="info-container"> 
+        <h3>Final Squad </h3>
+        <ol class="numbered-list">
+            <li *ngFor="let item of pickedSquad">{{ item.Name }}</li>
+        </ol>
+
+        <div class="additional-info">
+            <p><strong>Captain:</strong> {{ pickedCaptain?.Name }}</p>
+            <p><strong>Vice-Captain:</strong> {{ pickedViceCaptain?.Name }}</p>
+            <p><strong>Prediction:</strong> {{ pickedPrediction?.val }}</p>
+        </div>
+    </div> 
+
+    
+
+
+
 
 </div><!-- end of page container -->

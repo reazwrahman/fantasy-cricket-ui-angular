@@ -1,30 +1,49 @@
 .main-container {
-    /*max-width: 1000px; /* Adjust as needed */ 
-    width: 100%; 
+    /*max-width: 1000px; /* Adjust as needed */
+    width: 100%;
     height: auto;
-    margin: 0 auto; /* Centering the container */
+    margin: 0 auto;
+    /* Centering the container */
     /*padding: 10px; /* Add padding around the main content */
-    background-color: #131a24;/* Background color to unify the look */
+    background-color: #131a24;
+    /* Background color to unify the look */
     border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Soft shadow */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    /* Soft shadow */
+    align-items: center;
+    justify-content: center;
 }
 
-.page-title { 
-    text-align: center; /* Center the title */ 
+.page-title {
+    text-align: center;
+    /* Center the title */
     width: 100%;
-    color: #ffffff; /* White color for contrast */
-    margin-bottom: 20px; /* Space between title and carousel */
-    font-size: 36px; /* Larger font size for prominence */
-    font-family: 'Arial Black', sans-serif; /* Bold font family */
-    text-transform: uppercase; /* Uppercase letters for emphasis */
-    letter-spacing: 2px; /* Space between letters for a more dynamic look */
-    background: linear-gradient(135deg, #e2f7ef, #e2f6f1); /* Match your theme with a gradient */
-    -webkit-background-clip: text; /* Clip the background to the text */
-    -webkit-text-fill-color: transparent; /* Fill the text with the gradient */
-    text-shadow: 2px 2px 4px rgba(170, 198, 254, 0.7), 0 0 10px rgba(255, 255, 255, 0.3); /* Soft shadow for depth */
-    padding: 10px; /* Padding around the text */
-    border-radius: 8px; /* Rounded corners */
-    display: inline-block; /* Make the title an inline-block for padding */
+    color: #ffffff;
+    /* White color for contrast */
+    margin-bottom: 20px;
+    /* Space between title and carousel */
+    font-size: 36px;
+    /* Larger font size for prominence */
+    font-family: 'Arial Black', sans-serif;
+    /* Bold font family */
+    text-transform: uppercase;
+    /* Uppercase letters for emphasis */
+    letter-spacing: 2px;
+    /* Space between letters for a more dynamic look */
+    background: linear-gradient(135deg, #e2f7ef, #e2f6f1);
+    /* Match your theme with a gradient */
+    -webkit-background-clip: text;
+    /* Clip the background to the text */
+    -webkit-text-fill-color: transparent;
+    /* Fill the text with the gradient */
+    text-shadow: 2px 2px 4px rgba(170, 198, 254, 0.7), 0 0 10px rgba(255, 255, 255, 0.3);
+    /* Soft shadow for depth */
+    padding: 10px;
+    /* Padding around the text */
+    border-radius: 8px;
+    /* Rounded corners */
+    display: inline-block;
+    /* Make the title an inline-block for padding */
 }
 
 /* ----------------style for display cards------------------- */
@@ -33,45 +52,65 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%; /* Full width */
-    overflow: hidden; /* Hide any overflow */
-    padding: 10px; /* Padding around the container */
-    box-sizing: border-box; /* Include padding in the layout */
+    width: 100%;
+    /* Full width */
+    overflow: hidden;
+    /* Hide any overflow */
+    padding: 10px;
+    /* Padding around the container */
+    box-sizing: border-box;
+    /* Include padding in the layout */
 }
 
 /* Carousel styles */
 .carousel {
     display: flex;
-    gap: 15px; /* Space between items */
-    overflow-x: auto; /* Allow horizontal scrolling */
-    padding: 10px; /* Inner padding */
-    scroll-snap-type: x mandatory; /* Enable snap scrolling */
-    scrollbar-width: none; /* Hide scrollbar for Firefox */
+    gap: 15px;
+    /* Space between items */
+    overflow-x: auto;
+    /* Allow horizontal scrolling */
+    padding: 10px;
+    /* Inner padding */
+    scroll-snap-type: x mandatory;
+    /* Enable snap scrolling */
+    scrollbar-width: none;
+    /* Hide scrollbar for Firefox */
 }
 
 
 
 /* Prevent the first item from being cut off */
 .carousel-item {
-    flex: 0 0 auto; /* Ensure items don’t shrink */
+    flex: 0 0 auto;
+    /* Ensure items don’t shrink */
     max-width: 200px;
-    max-height: 400px; /*height */ 
+    max-height: 400px;
+    /*height */
     background: linear-gradient(135deg, #202734, #293b5b);
     border-radius: 12px;
     padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Add shadow */
-    scroll-snap-align: start; /* Align items correctly on scroll */ 
-    text-align: center; /* Center text alignment */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* Optional: Add shadow */
+    scroll-snap-align: start;
+    /* Align items correctly on scroll */
+    text-align: center;
+    /* Center text alignment */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    color: #ffffff; /* Default white text */
-    font-family: 'Arial', sans-serif; /* Clean, modern font */
+    color: #ffffff;
+    /* Default white text */
+    font-family: 'Arial', sans-serif;
+    /* Clean, modern font */
 }
 
 .carousel-item img {
-    width: 100%; /* Make the image fill the width of the tile */
-    max-height: 200px; /* Maintain the aspect ratio of the image */
-    border-radius: 8px; /* Slight rounding for image corners */
-    object-fit: cover; /* Cover the entire area while maintaining aspect ratio */
+    width: 100%;
+    /* Make the image fill the width of the tile */
+    max-height: 200px;
+    /* Maintain the aspect ratio of the image */
+    border-radius: 8px;
+    /* Slight rounding for image corners */
+    object-fit: cover;
+    /* Cover the entire area while maintaining aspect ratio */
 }
 
 .carousel-item:hover {
@@ -81,90 +120,82 @@
 }
 
 .carousel-info a {
-    display: inline-block; /* Keeps the link as an inline block for better control */
-    margin-top: 8px; /* Space above the link */
-    margin-bottom: 12px; /* Space below the link */
-    color: #3498db; /* Link color */
-    text-decoration: none; /* Removes underline */
-    font-size: 16px; /* Font size */
-    font-weight: bold; /* Bold text */
-    transition: color 0.3s ease; /* Smooth color transition on hover */
+    display: inline-block;
+    /* Keeps the link as an inline block for better control */
+    margin-top: 8px;
+    /* Space above the link */
+    margin-bottom: 12px;
+    /* Space below the link */
+    color: #3498db;
+    /* Link color */
+    text-decoration: none;
+    /* Removes underline */
+    font-size: 16px;
+    /* Font size */
+    font-weight: bold;
+    /* Bold text */
+    transition: color 0.3s ease;
+    /* Smooth color transition on hover */
 }
 
 .carousel-info a:hover {
-    color: #2980b9; /* Darker shade on hover */
-    text-decoration: underline; /* Underline on hover for indication */
+    color: #2980b9;
+    /* Darker shade on hover */
+    text-decoration: underline;
+    /* Underline on hover for indication */
 }
 
 .carousel-info a:active {
-    color: #1f4f7c; /* Darker shade when the link is clicked */
+    color: #1f4f7c;
+    /* Darker shade when the link is clicked */
 }
 
 /* Make carousel responsive */
 @media (max-width: 768px) {
     .carousel {
-        padding: 0 10px; 
-    } 
-    .carousel-item{ 
+        padding: 0 10px;
+    }
+
+    .carousel-item {
         max-width: 200px;
     }
 }
-/* ---------------------------------------------------- */  
 
-/* --------------------- additional info ------------------------------- */  
-.additional-info { 
-    width: auto;
-    max-width: 70%; 
-    margin: 30px auto; /* Center the div with margin */
-    padding: 20px; 
-    background-color: #171e1e; /* Same dark background as table header */
-    border-radius: 12px; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Subtle shadow for depth */
-    color: #fff;
-    text-align: center;
-    line-height: 1.6;
-    font-family: 'Arial', sans-serif;
-}
+/* ---------------------------------------------------- */
 
-
-.additional-info p {
-    font-size: 1.1em; 
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    margin: 8px 0;
-    color: #e0e0e0; /* Slightly lighter font for paragraphs */
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-}
-
-
-/* ---------------------style for checkboxes ------------------------------- */  
+/* ---------------------style for checkboxes ------------------------------- */
 .selection-container {
     display: flex;
-    flex-direction: column; /* Stack items vertically */
-    align-items: left; /* Horizontally center the container */
-    justify-content: left; /* Center the children vertically */
-    width: 70%; /* Ensure full container width */
-    padding: 40px;
+    flex-direction: column;
+    /* Stack items vertically */
+    margin: 0px auto;
+    width: 70%;
+    /* Ensure full container width */
 }
 
 .checklist-item {
     display: flex;
     align-items: left;
     padding: 14px 20px;
-    background-color: #292929; /* Dark background */
+    background-color: #292929;
+    /* Dark background */
     border-radius: 10px;
     margin-bottom: 5px;
     transition: transform 0.2s ease, background-color 0.2s ease;
     cursor: pointer;
     color: #fff;
-    width: 100%; /* Let the checkbox item fill up the container's width */
-    margin: 5px auto; /* Horizontally center the checklist item */ 
+    width: 100%;
+    /* Let the checkbox item fill up the container's width */
+    margin: 5px auto;
+    /* Horizontally center the checklist item */
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 1.2em;
 }
 
 
 .checklist-item:hover {
-    transform: scale(1.02); /* Slight zoom on hover */
+    transform: scale(1.02);
+    /* Slight zoom on hover */
 }
 
 /* Styling for the checkbox itself */
@@ -173,7 +204,8 @@
     cursor: pointer;
     width: 18px;
     height: 18px;
-    accent-color: #05f229; /* Green accent color for the checkbox */
+    accent-color: #05f229;
+    /* Green accent color for the checkbox */
     border-radius: 4px;
 }
 
@@ -183,13 +215,15 @@
 }
 
 .selected .player-info p {
-    color: #6af66f; /* Bright green text when selected */
+    color: #6af66f;
+    /* Bright green text when selected */
     font-size: 1.2em;
 }
 
 /* Add custom focus style for the checkbox when it's clicked */
 .checklist-item input:focus-visible {
-    outline: 3px solid #4CAF50; /* Green outline when focus is visible */
+    outline: 3px solid #4CAF50;
+    /* Green outline when focus is visible */
 }
 
 /* Small screen adjustments */
@@ -200,16 +234,18 @@
     }
 
     .checklist-item input {
-        width: 20px; /* Larger checkbox size for small screens */
+        width: 20px;
+        /* Larger checkbox size for small screens */
         height: 20px;
     }
 }
- 
 
-/* ---------------------style for dropdowns in bonus ------------------------------- */ 
+
+/* ---------------------style for dropdowns in bonus ------------------------------- */
 .dropdown-container {
     display: flex;
-    padding: 50px 30px; 
+    padding: 50px;
+    margin: 20px auto;
     align-items: center;
     justify-content: center;
     flex-direction: column;
@@ -218,34 +254,42 @@
 }
 
 
-#game-select-captain, #game-select-vice-captain, #game-select-prediction {
+#game-select-captain,
+#game-select-vice-captain,
+#game-select-prediction {
     appearance: none;
     padding: 10px 10px;
     margin-top: 5px;
-    font-size: 15px;
-    font-family: Arial, sans-serif;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 1.2em;
     border: 2px solid #007bff;
     border-radius: 8px;
     background-color: #f5f5f5;
     color: #333;
     cursor: pointer;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    position: relative; /* Make sure the position is relative for correct placement of the arrow */
-    padding-right: 25px; /* Provide space for the arrow */
+    position: relative;
+    /* Make sure the position is relative for correct placement of the arrow */
+    padding-right: 25px;
+    /* Provide space for the arrow */
 }
 
 /* Label styling */
 .dropdown-label {
-    font-size: 20px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 1.2em;
     font-weight: 600;
     color: #ffffff;
     margin-bottom: 5px;
-    font-family: Arial, sans-serif;
 }
 
 /* Hover and focus styles */
-#game-select-captain:hover, #game-select-vice-captain:hover, #game-select-prediction:hover,
-#game-select-captain:focus, #game-select-vice-captain:focus, #game-select-prediction:focus {
+#game-select-captain:hover,
+#game-select-vice-captain:hover,
+#game-select-prediction:hover,
+#game-select-captain:focus,
+#game-select-vice-captain:focus,
+#game-select-prediction:focus {
     border-color: #0056b3;
     box-shadow: 0px 4px 8px rgba(0, 123, 255, 0.2);
 }
@@ -256,17 +300,130 @@
     font-size: 16px;
     color: #333;
     position: relative;
-    right: 30px; 
+    right: 30px;
     top: 50%;
     transform: translateY(-50%);
     pointer-events: none;
 }
 
-
 /* Option styling */
-#game-select-captain option, #game-select-vice-captain option, #game-select-prediction option {
+#game-select-captain option,
+#game-select-vice-captain option,
+#game-select-prediction option {
     font-size: 16px;
     padding: 10px;
     background-color: #f5f5f5;
     color: #333;
+}
+
+/* mobile adjustments */
+@media (max-width: 600px) {
+
+    #game-select-captain,
+    #game-select-vice-captain,
+    #game-select-prediction {
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        font-size: 13px;
+    } 
+
+    .dropdown-label {
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        font-size: 1.1em;
+    }
+}
+
+/* ---------------------style for finalize squad ------------------------------- */
+.info-container {
+    /*background: rgba(0, 0, 0, 0.8); /* Dark background for modern look */
+    background: #131a24;
+    border-radius: 12px;
+    /* Rounded corners */
+    /*box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Enhanced shadow for depth */
+    padding: 10px;
+    /* Padding for inner spacing */
+    margin: 10px auto;
+    /* Center horizontally with auto */
+    max-width: 600px;
+    /* Maximum width for the container */
+    font-family: 'Arial', sans-serif;
+    /* Font styling */
+    color: #f8f9fa;
+    /* Light text color for contrast */
+    align-items: center;
+    justify-content: center;
+}
+
+
+.info-container h3 {
+    text-align: center;
+    font-size: 28px;
+    /* Increase heading size */
+    color: #4DAF7C;
+    /* Bright color for the heading to stand out */
+    margin-bottom: 15px;
+    /* Space below heading */
+}
+
+
+.numbered-list {
+    list-style-position: inside;
+    /* Keep the numbers inside the box */
+    padding-left: 0;
+    /* Remove padding to align numbers with text */
+    margin: 10px 0;
+    /* Add some space above and below the list */
+}
+
+.numbered-list li {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color: #292929;
+    font-size: 1.2em;
+    border-radius: 6px;
+    /* Rounded corners for list items */
+    padding: 10px;
+    /* Inner padding for list items */
+    margin-bottom: 8px;
+    /* Space between list items */
+    transition: background-color 0.3s;
+    /* Smooth background change */
+}
+
+.numbered-list li:hover {
+    background-color: #4DAF7C;
+    color: #fff;
+    cursor: pointer;
+}
+
+.additional-info {
+    width: auto;
+    max-width: 70%;
+    margin: 30px auto;
+    /* Center the div with margin */
+    padding: 20px;
+    background-color: #171e1e;
+    /* Same dark background as table header */
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    /* Subtle shadow for depth */
+    color: #fff;
+    text-align: center;
+    line-height: 1.6;
+    font-family: 'Arial', sans-serif;
+}
+
+.additional-info p {
+    font-size: 1.2em;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin: 8px 0;
+    color: #e0e0e0;
+    /* Slightly lighter font for paragraphs */
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* mobile adjustments */
+@media (max-width: 350px) {
+    #game-select {
+        padding: 10px 10px;
+        font-size: 13px;
+    }
 }
