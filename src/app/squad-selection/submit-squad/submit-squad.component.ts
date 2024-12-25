@@ -132,7 +132,7 @@ export class SubmitSquadComponent {
     this.loadFromStorage();
   }
 
-  onSubmit() {
+  onSubmit() { 
     if (Date.now() > this.startTime)  {
       this.alertError("Sorry, submission window is closed.")
     } else if (this.pickedCaptain?.id == this.pickedViceCaptain?.id) {
@@ -141,8 +141,10 @@ export class SubmitSquadComponent {
       this.alertError("You have to login to submit a squad. \n But don't worry, we have saved your selections for when you come back!");
       this.router.navigate(['auth/login']);
     } else if (this.pickedBatters.length < 3 || this.pickedBowlers.length < 3) {
-      this.alertError("You have to pick at least 3 batters and 3 bowlers!")
-    } else {
+      this.alertError("You have to pick at least 3 batters and 3 bowlers!");
+    } else if(!this.pickedCaptain || !this.pickedViceCaptain || !this.pickedPrediction){ 
+      this.alertError("Make sure to select a captain, a vice captain and make a prediction.");
+    }else {
       this.submitDataToAPI();
     }
   }
