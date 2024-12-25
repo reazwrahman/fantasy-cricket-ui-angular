@@ -1,5 +1,4 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core'; 
-import { fromZonedTime, toZonedTime } from 'date-fns-tz';
 
 @Component({
   selector: 'app-timer',
