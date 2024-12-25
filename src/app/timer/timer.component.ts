@@ -43,7 +43,7 @@ export class TimerComponent implements OnInit, OnDestroy {
       const currentTimeEST = toZonedTime(currentUtcTime, "America/New_York"); // Convert UTC to EST time
       const currentTimeESTInMs = currentTimeEST.getTime(); // Extract milliseconds
 
-      const difference = this.targetTimestamp - currentTimeESTInMs; // Calculate delta
+      const difference = this.targetTimestamp - currentUtcTime; // Calculate delta
 
       if (difference <= 0) {
         this.textColor = 'rgb(255, 48, 21)';

@@ -3,7 +3,7 @@ const Environments ={
     REMOTE : 'REMOTE'
 }
 
-const ENV: string = Environments.REMOTE;
+const ENV: string = Environments.LOCAL;
 
 const LOCAL_ENDPOINT = 'http://0.0.0.0:5001'
 const REMOTE_ENDPOINT = 'https://pe1nvrpbz4.execute-api.us-east-1.amazonaws.com/dev'
