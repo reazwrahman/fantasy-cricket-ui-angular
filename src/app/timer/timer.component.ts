@@ -1,4 +1,5 @@
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core'; 
+import { fromZonedTime, toZonedTime } from 'date-fns-tz';
 
 @Component({
   selector: 'app-timer',
@@ -38,15 +39,13 @@ export class TimerComponent implements OnInit, OnDestroy {
 
   startTimer(): void {
     this.timerInterval = setInterval(() => {
-      let currentTime = Date.now();  // UTC
-      let currentTimeEST = new Date(currentTime).toLocaleString("en-US", {
-        timeZone: "America/New_York",
-      });  // convert to EST
-      currentTime = new Date(currentTimeEST).getTime(); // convert to milliseconds
-      
-      const difference = this.targetTimestamp - currentTime; // find delta
+      const currentUtcTime = Date.now(); // UTC time in milliseconds
+      const currentTimeEST = toZonedTime(currentUtcTime, "America/New_York"); // Convert UTC to EST time
+      const currentTimeESTInMs = currentTimeEST.getTime(); // Extract milliseconds
 
-      if (difference <= 0) { 
+      const difference = this.targetTimestamp - currentTimeESTInMs; // Calculate delta
+
+      if (difference <= 0) {
         this.textColor = 'rgb(255, 48, 21)';
         this.windowIsOpen = false;
         this.closedMessage = "The submission window for this game is now closed, but feel free to experiment with your fantasy squad!"
@@ -54,7 +53,7 @@ export class TimerComponent implements OnInit, OnDestroy {
       } else {
         if (difference > 0 && difference < 10) {
           this.textColor = 'rgb(255, 48, 21)';
-        } 
+        }
         this.windowIsOpen = true;
         this.calculateTime(difference);
       }
