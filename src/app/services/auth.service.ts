@@ -120,6 +120,23 @@ export class AuthService {
     return this.http.post<any>(apiUrl, body, { headers });
   }
 
+  fetchRefreshedToken() {
+    const token = this.cookieService.get(JWT_KEY);
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': token
+    });
+
+    const apiUrl = getApiUrl('refreshToken');
+    let userInfo: UserInfo | null = this.getUserInfo();
+    let email: string = userInfo ? userInfo.email : "";
+
+    const body = {
+      email: email
+    }
+    return this.http.post<any>(apiUrl, body, { headers });
+  }
+
 
   // ------------- INTERNAL (NO API CALL REQUIRED FOR THE METHODS BELOW) ------//
 
@@ -134,18 +151,25 @@ export class AuthService {
       return false;  // Token not found
     }
 
-    try {
-      const decoded: any = jwtDecode(token);  // Decode the JWT
-      const exp = decoded.exp;  // Get expiration timestamp (in seconds)
-      const currentTime = Math.floor(Date.now() / 1000);  // Current time in seconds
+    // log user out if expires in 60 seconds or less
+    return this.readExpiryOnToken(token) > 60
+  }
 
-      const timeRemaining = exp - currentTime;  // Time remaining until expiration
+  refreshTokenIfNecessary(): void {
+    const token = this.getJwt();
+    if (!token) {
+      return;  // Token not found
+    }
+    let expiredInSeconds: number = this.readExpiryOnToken(token);
 
-      // Check if token is valid for more than 1 minute (60 seconds)
-      return timeRemaining > 60;
-    } catch (error) {
-      console.error('Error decoding JWT:', error);
-      return false;  // Invalid token format
+    if (expiredInSeconds > 0 && expiredInSeconds < 300) {// 5 minutes window 
+      this.fetchRefreshedToken().subscribe(
+        (response) => {
+          this.storeToken(response.token);
+        },
+        (error) => {
+          console.error(error);
+        })
     }
   }
 
@@ -176,6 +200,34 @@ export class AuthService {
       return userInfo;
     }
     return null;
+  }
+
+
+  // --------------------------------- utility methods ---------------------------- //  
+
+  readExpiryOnToken(token: string): number {
+    try {
+      const decoded: any = jwtDecode(token);  // Decode the JWT
+      const exp = decoded.exp;  // Get expiration timestamp (in seconds)
+      const currentTime = Math.floor(Date.now() / 1000);  // Current time in seconds
+
+      const timeRemaining = exp - currentTime;  // Time remaining until expiration
+
+      return timeRemaining;
+
+    } catch (error) {
+      console.error('Error decoding JWT:', error);
+      return -1;  // Invalid token format
+    }
+  } 
+
+  storeToken(token: string) {
+    this.cookieService.set('authToken', token, {
+      expires: 1, // 1 day
+      path: '/',
+      secure: true, // Optional, for HTTPS only
+      sameSite: 'Lax',
+    });
   }
 
 }// end of class

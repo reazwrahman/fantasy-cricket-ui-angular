@@ -46,7 +46,7 @@ export class LoginComponent {
         this.handleError(error);
       });
   }
-
+ 
   handleSuccess(response: any) {
     Swal.fire({
       icon: 'success',
@@ -55,7 +55,7 @@ export class LoginComponent {
       timer: 1500,
       showConfirmButton: false,
     });
-    this.storeToken(response.token);
+    this.authService.storeToken(response.token);
     const userInfo = {
       username: response.username,
       userId: response.user_id,
@@ -82,15 +82,6 @@ export class LoginComponent {
       confirmButtonText: 'Try Again',
 
     })
-  }
-
-  storeToken(token: string) {
-    this.cookieService.set('authToken', token, {
-      expires: 1, // 1 day
-      path: '/',
-      secure: true, // Optional, for HTTPS only
-      sameSite: 'Lax',
-    });
   }
 
   onLogin() {

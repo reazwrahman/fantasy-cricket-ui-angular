@@ -20,6 +20,7 @@ const apiConfig: ApiConfig = {
 
     // join league 
     viewSquad: '/squadSelection/viewMySquad', 
+    getSquadMetaData: '/squadSelection/getSquadMetaData',
     matchSquad: '/squadSelection/fullMatchSquad?match_id={matchId}', 
     submitSquad: '/squadSelection/submitSquad',
 
@@ -30,7 +31,8 @@ const apiConfig: ApiConfig = {
     reset: '/auth/reset', 
     resetWithToken: '/auth/resetWithToken',
     changeUsername: '/auth/changeUsername', 
-    changePassword: '/auth/changePassword'
+    changePassword: '/auth/changePassword', 
+    refreshToken: '/auth/refreshToken'
 };
 
 

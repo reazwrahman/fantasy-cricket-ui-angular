@@ -26,7 +26,8 @@ export class MainNavbarComponent {
   }
 
   // route to unconfirmed if applicable
-  onInitAction() {
+  onInitAction() { 
+    console.log(this.username);
     if (this.authService.isUserLoggedIn()) {
 
       let userInfo: UserInfo | null = this.authService.getUserInfo();
@@ -37,6 +38,8 @@ export class MainNavbarComponent {
       if (!this.authService.isUserConfirmed()) {
         this.router.navigate(['auth/unconfirmed']);
       }
+
+      this.authService.refreshTokenIfNecessary();
     }
   }
 
