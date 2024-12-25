@@ -40,9 +40,6 @@ export class TimerComponent implements OnInit, OnDestroy {
   startTimer(): void {
     this.timerInterval = setInterval(() => {
       const currentUtcTime = Date.now(); // UTC time in milliseconds
-      const currentTimeEST = toZonedTime(currentUtcTime, "America/New_York"); // Convert UTC to EST time
-      const currentTimeESTInMs = currentTimeEST.getTime(); // Extract milliseconds
-
       const difference = this.targetTimestamp - currentUtcTime; // Calculate delta
 
       if (difference <= 0) {
