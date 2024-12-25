@@ -73,7 +73,7 @@ export class SubmitSquadComponent {
   LOCAL_STORAGE_KEY: string = ""; // key used to set/get item from local storage
 
   //the session storage key that will indicate whether user squad has been loaded 
-  METADATA_LOADED_INDICATOR_KEY = ""; 
+  METADATA_LOADED_INDICATOR_KEY = "";
 
   game: Game | null = null;
   matchSquad: SquadResponse | null = null;
@@ -133,8 +133,10 @@ export class SubmitSquadComponent {
   }
 
   onSubmit() {
-    if (this.pickedCaptain?.id == this.pickedViceCaptain?.id) {
-      this.alertError("Captain and Vice Captain must be different players!")
+    if (Date.now() > this.startTime)  {
+      this.alertError("Sorry, submission window is closed.")
+    } else if (this.pickedCaptain?.id == this.pickedViceCaptain?.id) {
+      this.alertError("Captain and Vice Captain must be different players!");
     } else if (!this.authService.isUserLoggedIn()) {
       this.alertError("You have to login to submit a squad. \n But don't worry, we have saved your selections for when you come back!");
       this.router.navigate(['auth/login']);
@@ -156,7 +158,7 @@ export class SubmitSquadComponent {
     // check the picked player in the UI
     for (let i = 0; i < fullSquad.length; i++) {
       let targetIndex = this.findIndexFromTargetList(fullSquad[i].id, this.squadForSelection);
-      if (targetIndex!= -1) {
+      if (targetIndex != -1) {
         this.squadForSelection[targetIndex].selected = true;
       }
     }
@@ -172,7 +174,7 @@ export class SubmitSquadComponent {
   getGameInfo() {
     this.game = sessionStorage.getItem(SELECTED_GAME) ? JSON.parse(sessionStorage[SELECTED_GAME]!) : null;
     if (this.game != null) {
-      this.LOCAL_STORAGE_KEY = this.game.id + "#" + "squad-selection"; 
+      this.LOCAL_STORAGE_KEY = this.game.id + "#" + "squad-selection";
       this.METADATA_LOADED_INDICATOR_KEY = this.game.id + "#" + "metadata-loaded";
     }
   }
@@ -256,7 +258,7 @@ export class SubmitSquadComponent {
   getUserSquadFromAPI() {
     if (!this.authService.isUserLoggedIn() || sessionStorage.getItem(this.METADATA_LOADED_INDICATOR_KEY) == "true") {
       return;
-    } 
+    }
 
     let jwt: string = this.authService.getJwt();
     const storedUserInfo: UserInfo | null = this.authService.getUserInfo();
@@ -265,7 +267,7 @@ export class SubmitSquadComponent {
       storedUserInfo!.userId, this.game!.id).subscribe(
         (response) => {
           let rawData: SubmitDataModel = response;
-          this.writeMetaDataToStorage(rawData);  
+          this.writeMetaDataToStorage(rawData);
           sessionStorage.setItem(this.METADATA_LOADED_INDICATOR_KEY, "true");
         },
         (error) => {
@@ -274,15 +276,15 @@ export class SubmitSquadComponent {
   }
 
   writeMetaDataToStorage(squadMetaData: SubmitDataModel) {
-    this.pickedBatters = this.buildSquadFromIds(squadMetaData.selected_squad, this.matchSquad!.batters); 
+    this.pickedBatters = this.buildSquadFromIds(squadMetaData.selected_squad, this.matchSquad!.batters);
     this.pickedBowlers = this.buildSquadFromIds(squadMetaData.selected_squad, this.matchSquad!.bowlers);
     this.pickedSquad = this.pickedBatters.concat(this.pickedBowlers);
 
-    this.pickedCaptain = this.pickedSquad[this.findIndexFromTargetList(squadMetaData.captain, this.pickedSquad)];  
-    this.pickedViceCaptain = this.pickedSquad[this.findIndexFromTargetList(squadMetaData.vice_captain, this.pickedSquad)];  
-    this.pickedPrediction = this.predictionsAvailable? this.predictionsAvailable[this.findIndexFromTargetList(squadMetaData.result_prediction, this!.predictionsAvailable)] : null; 
-    
-    this.writeToStorage(); 
+    this.pickedCaptain = this.pickedSquad[this.findIndexFromTargetList(squadMetaData.captain, this.pickedSquad)];
+    this.pickedViceCaptain = this.pickedSquad[this.findIndexFromTargetList(squadMetaData.vice_captain, this.pickedSquad)];
+    this.pickedPrediction = this.predictionsAvailable ? this.predictionsAvailable[this.findIndexFromTargetList(squadMetaData.result_prediction, this!.predictionsAvailable)] : null;
+
+    this.writeToStorage();
     this.loadFromStorage();
   }
 
@@ -295,16 +297,16 @@ export class SubmitSquadComponent {
     return targetList.findIndex(iterator => iterator.id == uniqueId);
   }
 
-  buildSquadFromIds(playerIds: String[], playerPool:PlayersInfo[] | null) : PlayersInfo[]{ 
-    if (!playerPool){ 
+  buildSquadFromIds(playerIds: String[], playerPool: PlayersInfo[] | null): PlayersInfo[] {
+    if (!playerPool) {
       return [];
     }
-    let pickedSquad: PlayersInfo[] = [];  
-    
+    let pickedSquad: PlayersInfo[] = [];
+
     for (let i = 0; i < playerIds.length; i++) {
       let playerId: String = playerIds[i];
-      let targetIndex: number = this.findIndexFromTargetList(playerId, playerPool); 
-      if (targetIndex != -1){
+      let targetIndex: number = this.findIndexFromTargetList(playerId, playerPool);
+      if (targetIndex != -1) {
         pickedSquad.push(playerPool[targetIndex]);
       }
     }
