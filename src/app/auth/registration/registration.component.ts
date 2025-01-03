@@ -35,11 +35,9 @@ export class RegistrationComponent {
     private router: Router, private cookieService: CookieService) { }
 
   onRegister() {
-    if (this.matchPassword()) {
+    if (this.matchPassword() && this.authService.validateEmail(this.email)) {
       this.register()
     };
-
-
   }
 
   matchPassword(): boolean {

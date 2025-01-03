@@ -46,7 +46,7 @@ export class LoginComponent {
         this.handleError(error);
       });
   }
- 
+
   handleSuccess(response: any) {
     Swal.fire({
       icon: 'success',
@@ -85,14 +85,16 @@ export class LoginComponent {
   }
 
   onLogin() {
-    this.logIn();
+    if (this.authService.validateEmail(this.email)) {
+      this.logIn();
+    }
   }
 
   navigateToRegister() {
     this.router.navigate(['auth/register']);
-  } 
+  }
 
-  resetPassword(){ 
+  resetPassword() {
     this.router.navigate(['auth/reset']);
   }
 }

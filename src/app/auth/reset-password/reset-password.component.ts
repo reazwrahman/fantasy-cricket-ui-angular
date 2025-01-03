@@ -41,13 +41,14 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   sendInstruction() {
+    if (!this.authService.validateEmail(this.email)) { return; }
     this.authService.sendResetInstruction(this.email).subscribe(
       (response) => {
         let message: string = 'An email has been sent with reset instruction, make sure to check spam as well';
         this.alertSuccess(message);
         this.router.navigate(['/home']);
       },
-      (error) => { 
+      (error) => {
         let errorMessage = error.error?.error || 'Something went wrong. Please try again.';
         this.alertError(errorMessage);
       });

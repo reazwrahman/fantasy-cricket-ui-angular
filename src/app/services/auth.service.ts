@@ -8,6 +8,7 @@ import { jwtDecode } from "jwt-decode";
 
 //local imports
 import { getApiUrl } from '../config'
+import Swal from 'sweetalert2';
 
 const JWT_KEY = "authToken";
 const USER_INFO = "userInfo";
@@ -228,6 +229,20 @@ export class AuthService {
       secure: true, // Optional, for HTTPS only
       sameSite: 'Lax',
     });
+  } 
+
+  validateEmail(email: string): boolean {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Invalid Email',
+        text: 'The entered email format is invalid',
+        confirmButtonText: 'Try Again',
+      })
+      return false;
+    }
+    return true;
   }
 
 }// end of class
